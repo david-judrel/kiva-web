@@ -431,41 +431,6 @@
   color: var(--c-negative);
 }
 
-/* Store badges (informative, the app is not published yet). */
-.stores {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--kiva-space-3);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.store {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--kiva-space-3);
-  min-width: 132px;
-  padding: 8px var(--kiva-space-4);
-  border: 1px solid var(--c-border);
-  border-radius: var(--kiva-radius-button);
-  background: var(--c-glass);
-  color: var(--c-heading);
-  font-size: var(--kiva-fs-body-sm);
-  font-weight: 600;
-  line-height: 1.1;
-}
-
-.store span {
-  display: grid;
-}
-
-.store small {
-  font-size: 10px;
-  font-weight: 500;
-  color: var(--c-text-muted);
-}
-
 /* ---- Visual: realistic phone, glass cards around ---- */
 .heroVisual {
   position: relative;

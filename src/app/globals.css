@@ -147,7 +147,19 @@
   }
 }
 
-/* Smooth color change when the user toggles the theme. */
+/* Theme switch: circular propagation (View Transitions API, see ThemeToggle).
+   The new theme is revealed by a growing clip-path; disable the default cross-fade. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-new(root) {
+  z-index: 1;
+}
+
+/* Fallback (no View Transitions): smooth color change when the user toggles the theme. */
 html.theme-transition,
 html.theme-transition *,
 html.theme-transition *::before,

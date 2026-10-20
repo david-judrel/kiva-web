@@ -86,7 +86,7 @@ export const en: Dictionary = {
       titleTail: "with confidence.",
       lead: `${BRAND} will open up African financial markets to you. Analyze, follow listed companies and prepare your investments, simply.`,
       storeSoon: "Coming soon on",
-      stores: ["iOS", "Android"],
+      stores: ["App Store", "Google Play"],
       cards: {
         trustTitle: "Transparency",
         trustText: "Fees and risks shown before every decision.",

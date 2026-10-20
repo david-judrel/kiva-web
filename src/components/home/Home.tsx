@@ -1,5 +1,4 @@
 import {
-  Apple,
   ArrowRight,
   ArrowUpRight,
   ChartLine,
@@ -8,7 +7,6 @@ import {
   FlaskConical,
   House,
   Monitor,
-  Play,
   Plus,
   Search,
   ShieldCheck,
@@ -26,6 +24,7 @@ import { revealDelay } from "@/components/motion/reveal";
 import { ButtonLink } from "@/components/ui/Button";
 import { ChangeIndicator } from "@/components/ui/ChangeIndicator";
 import { AssetCoin } from "@/components/ui/AssetCoin";
+import { StoreBadges } from "@/components/ui/StoreBadges";
 import { DemoBadge } from "@/components/ui/Badge";
 import { Sparkline } from "@/components/ui/Sparkline";
 import { FeatureArt, type FeatureArtVariant } from "@/components/illustrations/FeatureArt";
@@ -92,7 +91,6 @@ export function Hero({ locale, dict }: Props) {
       ));
   const leadCount = t.titleLead.split(" ").filter(Boolean).length;
   const highlightCount = t.titleHighlight.split(" ").filter(Boolean).length;
-  const storeIcons = [Apple, Play];
 
   return (
     <section id="hero" className={styles.hero} aria-labelledby="hero-title">
@@ -123,21 +121,7 @@ export function Hero({ locale, dict }: Props) {
               {t.privacy}
             </p>
           </div>
-          {/* No app is published yet: informative badges, not links. */}
-          <ul className={cn(styles.stores, styles.enter)} style={{ animationDelay: "740ms" }}>
-            {t.stores.map((store, i) => {
-              const Icon = storeIcons[i];
-              return (
-                <li key={store} className={styles.store}>
-                  <Icon size={22} strokeWidth={1.75} aria-hidden="true" />
-                  <span>
-                    <small>{t.storeSoon}</small>
-                    {store}
-                  </span>
-                </li>
-              );
-            })}
-          </ul>
+          <StoreBadges soon={t.storeSoon} stores={t.stores} className={styles.enter} />
         </div>
 
         <div className={styles.heroVisual}>
@@ -422,7 +406,6 @@ export function AppShowcase({ locale, dict }: Props) {
   const t = dict.home.app;
   const hero = dict.home.hero;
   const tileIcons = [House, ChartLine, CirclePlus, Wallet];
-  const storeIcons = [Apple, Play];
 
   return (
     <section className="section" aria-labelledby="app-title">
@@ -447,21 +430,7 @@ export function AppShowcase({ locale, dict }: Props) {
                 <ArrowRight size={18} strokeWidth={2} aria-hidden="true" />
               </ButtonLink>
             </div>
-            {/* No app is published yet: informative badges, not links. */}
-            <ul className={styles.stores}>
-              {hero.stores.map((store, i) => {
-                const Icon = storeIcons[i];
-                return (
-                  <li key={store} className={styles.store}>
-                    <Icon size={22} strokeWidth={1.75} aria-hidden="true" />
-                    <span>
-                      <small>{hero.storeSoon}</small>
-                      {store}
-                    </span>
-                  </li>
-                );
-              })}
-            </ul>
+            <StoreBadges soon={hero.storeSoon} stores={hero.stores} />
           </div>
 
           <div className={styles.appStage} aria-hidden="true">

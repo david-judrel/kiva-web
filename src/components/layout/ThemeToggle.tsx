@@ -1,6 +1,7 @@
 "use client";
 
 import { Moon, Sun } from "lucide-react";
+import type { MouseEvent } from "react";
 import { cn } from "@/lib/cn";
 import { THEME_COLORS, THEME_STORAGE_KEY } from "@/lib/theme";
 import styles from "./ThemeToggle.module.css";
@@ -16,12 +17,8 @@ interface ThemeToggleProps {
  * never mismatches the theme chosen before hydration.
  */
 export function ThemeToggle({ labels, className, variant = "icon" }: ThemeToggleProps) {
-  function toggle() {
-    const root = document.documentElement;
-    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-    const animate = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (animate) root.classList.add("theme-transition");
-    root.setAttribute("data-theme", next);
+  function applyTheme(next: "light" | "dark") {
+    document.documentElement.setAttribute("data-theme", next);
     try {
       localStorage.setItem(THEME_STORAGE_KEY, next);
     } catch {
@@ -30,7 +27,37 @@ export function ThemeToggle({ labels, className, variant = "icon" }: ThemeToggle
     document.querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]').forEach((meta) => {
       meta.setAttribute("content", THEME_COLORS[next]);
     });
-    if (animate) window.setTimeout(() => root.classList.remove("theme-transition"), 300);
+  }
+
+  function toggle(event: MouseEvent<HTMLButtonElement>) {
+    const root = document.documentElement;
+    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // Circular propagation from the button (View Transitions API), when supported.
+    if (!reduced && typeof document.startViewTransition === "function") {
+      const rect = event.currentTarget.getBoundingClientRect();
+      // Keyboard activation has no pointer position: start from the button center.
+      const x = event.clientX || rect.left + rect.width / 2;
+      const y = event.clientY || rect.top + rect.height / 2;
+      const radius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+      const transition = document.startViewTransition(() => applyTheme(next));
+      transition.ready
+        .then(() => {
+          root.animate(
+            { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
+            { duration: 700, easing: "cubic-bezier(0.65, 0, 0.35, 1)", pseudoElement: "::view-transition-new(root)" },
+          );
+        })
+        .catch(() => {
+          // Transition skipped (e.g. tab hidden): the theme is already applied.
+        });
+      return;
+    }
+
+    if (!reduced) root.classList.add("theme-transition");
+    applyTheme(next);
+    if (!reduced) window.setTimeout(() => root.classList.remove("theme-transition"), 300);
   }
 
   return (

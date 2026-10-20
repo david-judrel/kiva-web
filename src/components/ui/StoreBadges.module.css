@@ -1,0 +1,51 @@
+/* Store badges follow the stores' look (black, thin gray border), identical in both themes. */
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--kiva-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 52px;
+  padding: 0 18px 0 12px;
+  border: 1px solid #a6a6a6;
+  border-radius: 10px;
+  background: #000;
+  color: #fff;
+  user-select: none;
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 28px;
+}
+
+.apple {
+  color: #fff;
+  margin-top: -3px;
+}
+
+.text {
+  display: grid;
+  line-height: 1.05;
+  text-align: left;
+}
+
+.text small {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.text span {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}

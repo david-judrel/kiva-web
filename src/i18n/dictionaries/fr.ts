@@ -90,7 +90,7 @@ export const fr = {
       titleTail: "en toute confiance.",
       lead: `${BRAND} vous ouvrira les marchés financiers africains. Analysez, suivez les sociétés cotées et préparez vos investissements, simplement.`,
       storeSoon: "Bientôt sur",
-      stores: ["iOS", "Android"],
+      stores: ["App Store", "Google Play"],
       cards: {
         trustTitle: "Transparence",
         trustText: "Frais et risques affichés avant chaque décision.",

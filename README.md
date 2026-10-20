@@ -58,6 +58,6 @@ Le dépôt [kiva-web](https://github.com/david-judrel/kiva-web) contient uniquem
 1. Sur Netlify : **Add new site → Import an existing project → GitHub → `david-judrel/kiva-web`**.
 2. Laisser les réglages détectés : commande `npm run build`, dossier `.next`. Le runtime Next.js de Netlify est appliqué automatiquement.
 3. Dans **Site configuration → Environment variables**, ajouter `NEXT_PUBLIC_SITE_URL` avec l'URL du site (par exemple `https://kiva.netlify.app`). Relancer ensuite un déploiement.
-4. Ne pas définir `NEXT_PUBLIC_SHOW_ISSUER_LOGOS` en ligne : les logos des sociétés sont réservés aux démonstrations locales, et leurs fichiers ne sont pas versionnés.
+4. Les logos des sociétés (`public/logos`) s'affichent par défaut. Pour les masquer, définir `NEXT_PUBLIC_SHOW_ISSUER_LOGOS` = `false`.
 
 Chaque push sur `main` redéploie le site.

@@ -43,7 +43,3 @@ next-env.d.ts
 # verification builds (see next.config.ts distDir)
 /.next-verify/
 
-# Third-party issuer logos: local demo only, never committed (see public/logos/README.md)
-/public/logos/*
-!/public/logos/README.md
-!/public/logos/logos.json

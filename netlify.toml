@@ -11,5 +11,5 @@
   NEXT_TELEMETRY_DISABLED = "1"
   # Set in the Netlify UI (Site configuration → Environment variables):
   #   NEXT_PUBLIC_SITE_URL = https://<your-site>.netlify.app   (canonical URLs, sitemap, Open Graph)
-  # Do NOT set NEXT_PUBLIC_SHOW_ISSUER_LOGOS on a public deployment: issuer logos are
-  # third-party trademarks, for local demos only (and their files are not in the repo).
+  # Issuer logos (public/logos) are shown by default. To hide them without deleting the
+  # files, set NEXT_PUBLIC_SHOW_ISSUER_LOGOS = false.

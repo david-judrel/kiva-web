@@ -1,10 +1,10 @@
-# Logos des sociétés (démonstration locale uniquement)
+# Logos des sociétés
 
-Ces fichiers sont des marques appartenant aux sociétés cotées. Ils ne sont **pas versionnés** (voir `.gitignore`) et ne s'affichent que si `NEXT_PUBLIC_SHOW_ISSUER_LOGOS=true` est défini (fichier `.env.local`).
+Ces fichiers sont des marques appartenant aux sociétés cotées, utilisées ici pour la démonstration. Ils sont versionnés et **s'affichent par défaut**, en local comme en production.
 
-Sans ce réglage, ou pour une société sans fichier, le site affiche la pièce neutre avec l'initiale.
+Pour une société sans fichier, le site affiche la pièce neutre avec l'initiale. Pour masquer tous les logos sans supprimer les fichiers, définir `NEXT_PUBLIC_SHOW_ISSUER_LOGOS=false` (fichier `.env.local` ou variables Netlify).
 
-**Ne pas activer sur un site public** sans l'accord écrit de chaque société concernée.
+Ces logos appartiennent à leurs titulaires : leur affichage sur un site public ne vaut pas partenariat. Obtenir l'accord des sociétés concernées avant un lancement officiel.
 
 Nommage : `<id>.svg`, `<id>.png` ou `<id>.jpg`, avec l'`id` de `src/data/market-demo.ts` :
 

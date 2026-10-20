@@ -2,12 +2,12 @@ import { closeSync, existsSync, openSync, readFileSync, readdirSync, readSync } 
 import path from "node:path";
 
 /**
- * Issuer logos are third-party trademarks. They are shown only for local
- * demonstrations, when NEXT_PUBLIC_SHOW_ISSUER_LOGOS=true and a usable file
- * exists in public/logos/<id>.(svg|png|jpg). Otherwise the neutral coin with
- * the initial is used.
+ * Issuer logos (third-party trademarks, used for demonstration) are shown when a
+ * usable file exists in public/logos/<id>.(svg|png|jpg); otherwise the coin shows
+ * the company's initial. Enabled by default; set NEXT_PUBLIC_SHOW_ISSUER_LOGOS=false
+ * to hide them all without removing the files.
  */
-const enabled = process.env.NEXT_PUBLIC_SHOW_ISSUER_LOGOS === "true";
+const enabled = process.env.NEXT_PUBLIC_SHOW_ISSUER_LOGOS !== "false";
 
 /** How a logo is placed on the coin disc (see public/logos/logos.json). */
 export interface IssuerLogo {

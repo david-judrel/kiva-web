@@ -577,6 +577,13 @@ export const fr = {
   },
 
   auth: {
+    social: {
+      label: "Connexion avec un compte existant",
+      continueWith: "Continuer avec {provider}",
+      divider: "ou avec votre adresse e-mail",
+      unavailableTitle: "Connexion {provider} pas encore disponible",
+      unavailableText: `Les comptes ${BRAND} ne sont pas encore ouverts. Aucune donnée n'a été demandée ni transmise à {provider}.`,
+    },
     unavailableBanner: "Les comptes ne sont pas encore ouverts. Vous pouvez explorer ce parcours, mais aucune donnée n'est transmise ni enregistrée.",
     login: {
       title: "Connexion",

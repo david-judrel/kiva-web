@@ -573,6 +573,13 @@ export const en: Dictionary = {
   },
 
   auth: {
+    social: {
+      label: "Sign in with an existing account",
+      continueWith: "Continue with {provider}",
+      divider: "or with your email address",
+      unavailableTitle: "{provider} sign-in not available yet",
+      unavailableText: `${BRAND} accounts are not open yet. No data was requested from or sent to {provider}.`,
+    },
     unavailableBanner: "Accounts are not open yet. You can explore this flow, but no data is transmitted or stored.",
     login: {
       title: "Log in",

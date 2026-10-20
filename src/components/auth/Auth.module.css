@@ -88,3 +88,92 @@
 .asideList li::marker {
   color: var(--kiva-lime);
 }
+
+/* ------------------------------------------------------- Social sign-in */
+.social {
+  display: grid;
+  gap: var(--kiva-space-4);
+}
+
+.socialList {
+  display: grid;
+  gap: var(--kiva-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.socialButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--kiva-space-3);
+  width: 100%;
+  min-height: var(--kiva-button-height);
+  padding: 0 var(--kiva-space-4);
+  border: 1px solid var(--c-border);
+  border-radius: var(--kiva-radius-button);
+  background: var(--c-surface);
+  color: var(--c-heading);
+  font-size: var(--kiva-fs-body);
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    border-color var(--kiva-motion-fast) var(--kiva-easing),
+    background-color var(--kiva-motion-fast) var(--kiva-easing),
+    transform var(--kiva-motion-fast) var(--kiva-easing);
+}
+
+.socialButton:hover:not(:disabled) {
+  border-color: var(--c-border-strong);
+  background: var(--c-surface-2);
+}
+
+.socialButton:active:not(:disabled) {
+  transform: scale(0.99);
+}
+
+.socialButton:disabled {
+  cursor: progress;
+  opacity: 0.7;
+}
+
+.socialButton svg {
+  flex-shrink: 0;
+}
+
+/* Apple guidelines: monochrome mark matching the text color. */
+.social_apple svg {
+  color: var(--c-heading);
+}
+
+.socialSpinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: social-spin 700ms linear infinite;
+}
+
+@keyframes social-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: var(--kiva-space-3);
+  font-size: var(--kiva-fs-caption);
+  color: var(--c-text-muted);
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--c-border);
+}

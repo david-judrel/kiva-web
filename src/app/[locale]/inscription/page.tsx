@@ -4,6 +4,7 @@ import { resolveLocale } from "@/i18n/server";
 import { pageMetadata } from "@/lib/metadata";
 import { RegisterForm } from "@/components/auth/AuthForms";
 import { AuthLayout } from "@/components/auth/AuthLayout";
+import { SocialAuth } from "@/components/auth/SocialAuth";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/inscription">): Promise<Metadata> {
   const { locale, dict } = await resolveLocale(params);
@@ -14,6 +15,7 @@ export default async function RegisterPage({ params }: PageProps<"/[locale]/insc
   const { locale, dict } = await resolveLocale(params);
   return (
     <AuthLayout dict={dict} title={dict.auth.register.title} subtitle={dict.auth.register.subtitle}>
+      <SocialAuth t={dict.auth.social} />
       <RegisterForm
         forms={dict.forms}
         t={dict.auth.register}

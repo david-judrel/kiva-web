@@ -18,12 +18,17 @@ async function notConnected(): Promise<ServiceResult> {
   return { status: "unavailable" };
 }
 
+export type OAuthProvider = "google" | "apple" | "facebook";
+
 export const authService: {
   login: Service<{ email: string; password: string; remember: boolean }>;
+  /** Social sign-in. Later: redirect to the provider (Auth.js, Supabase, …). */
+  oauth: Service<{ provider: OAuthProvider }>;
   register: Service<{ fullName: string; email: string; password: string }>;
   requestPasswordReset: Service<{ email: string }>;
 } = {
   login: notConnected,
+  oauth: notConnected,
   register: notConnected,
   requestPasswordReset: notConnected,
 };

@@ -1,0 +1,57 @@
+.toggle {
+  display: inline-grid;
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--kiva-space-2);
+  min-width: var(--kiva-button-height-sm);
+  min-height: var(--kiva-button-height-sm);
+  padding: 0 var(--kiva-space-2);
+  border: 1px solid var(--c-border);
+  border-radius: var(--kiva-radius-pill);
+  background: var(--c-surface);
+  color: var(--c-heading);
+  font-size: var(--kiva-fs-body-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color var(--kiva-motion-fast) var(--kiva-easing), transform var(--kiva-motion-base) var(--kiva-ease-out);
+}
+
+.toggle:hover {
+  border-color: var(--c-border-strong);
+}
+
+.toggle:hover svg {
+  transform: rotate(-20deg);
+}
+
+.toggle svg {
+  transition: transform var(--kiva-motion-base) var(--kiva-ease-out);
+}
+
+.full {
+  min-height: var(--kiva-touch-target);
+  padding: 0 var(--kiva-space-4);
+  justify-content: start;
+}
+
+/* Light theme shows the moon ("switch to dark"); dark theme shows the sun. */
+.sun,
+.labelLight {
+  display: none;
+}
+
+:global([data-theme="dark"]) .moon,
+:global([data-theme="dark"]) .labelDark {
+  display: none;
+}
+
+:global([data-theme="dark"]) .sun,
+:global([data-theme="dark"]) .labelLight {
+  display: inline;
+}
+
+/* The visually-hidden label stays out of layout but is still announced. */
+.label:global(.visually-hidden) {
+  position: absolute !important;
+}

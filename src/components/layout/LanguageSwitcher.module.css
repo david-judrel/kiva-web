@@ -1,0 +1,123 @@
+.root {
+  position: relative;
+}
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: var(--kiva-button-height-sm);
+  padding: 0 var(--kiva-space-3);
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  font-size: var(--kiva-fs-body-sm);
+  font-weight: 600;
+  color: var(--c-text);
+  cursor: pointer;
+}
+
+.trigger:hover,
+.trigger[aria-expanded="true"] {
+  background: var(--c-hover);
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + var(--kiva-space-2));
+  right: 0;
+  z-index: 60;
+  display: grid;
+  gap: 2px;
+  min-width: 180px;
+  margin: 0;
+  padding: var(--kiva-space-2);
+  list-style: none;
+  border: 1px solid var(--c-border);
+  border-radius: var(--kiva-radius-card);
+  background: var(--c-surface);
+  box-shadow: var(--kiva-shadow-raised);
+}
+
+.menu[hidden] {
+  display: none;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--kiva-touch-target);
+  padding: 0 var(--kiva-space-3);
+  border-radius: 10px;
+  font-size: var(--kiva-fs-body-sm);
+  text-decoration: none;
+  color: var(--c-text);
+}
+
+.option:hover,
+.option:focus-visible {
+  background: var(--c-surface-2);
+}
+
+.option[aria-current="true"] {
+  font-weight: 600;
+  color: var(--c-heading);
+}
+
+.inline {
+  display: grid;
+  gap: var(--kiva-space-3);
+}
+
+.inlineLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--kiva-space-2);
+  font-size: var(--kiva-fs-caption);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+}
+
+.inlineList {
+  display: flex;
+  gap: var(--kiva-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.inlineOption {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--kiva-touch-target);
+  padding: 0 var(--kiva-space-4);
+  border: 1px solid var(--c-border);
+  border-radius: var(--kiva-radius-pill);
+  background: var(--c-surface);
+  font-size: var(--kiva-fs-body-sm);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.inlineOption[aria-current="true"] {
+  border-color: var(--c-heading);
+  background: var(--c-inverse-bg);
+  color: var(--c-inverse-text);
+}
+
+
+
+
+.menu:not([hidden]) {
+  animation: menu-in var(--kiva-motion-base) var(--kiva-ease-out);
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}

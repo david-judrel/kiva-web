@@ -1,0 +1,25 @@
+.change {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Theme-aware colors: lightened on dark surfaces for contrast. Sign + icon always present. */
+.up {
+  color: var(--c-positive);
+}
+
+.down {
+  color: var(--c-negative);
+}
+
+.flat {
+  color: var(--c-flat);
+}
+
+.plain {
+  color: inherit;
+}

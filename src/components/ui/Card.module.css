@@ -1,0 +1,31 @@
+.card {
+  border: 1px solid var(--c-border);
+  border-radius: var(--kiva-radius-card);
+  padding: var(--kiva-space-4);
+}
+
+@media (min-width: 900px) {
+  .card {
+    padding: var(--kiva-space-6);
+  }
+
+  .lg {
+    padding: var(--kiva-space-8);
+  }
+}
+
+.default {
+  background: var(--c-surface);
+}
+
+.muted {
+  background: var(--c-surface-2);
+}
+
+/* Always dark (".dark-surface" scope): Deep Forest in light theme, raised surface in dark theme. */
+.highlight {
+  background: var(--c-highlight-bg);
+  border-color: var(--c-border);
+  color: var(--c-text);
+  border-radius: var(--kiva-radius-card-lg);
+}

@@ -1,0 +1,81 @@
+.notice {
+  background: var(--kiva-forest);
+  color: var(--kiva-off-white);
+  font-size: var(--kiva-fs-caption);
+  line-height: 1.4;
+}
+
+.noticeInner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--kiva-space-2);
+  padding-block: var(--kiva-space-2);
+  text-align: center;
+}
+
+.noticeIcon {
+  flex-shrink: 0;
+  color: var(--kiva-lime);
+}
+
+.noticeLink {
+  font-weight: 600;
+  color: var(--kiva-lime);
+  text-underline-offset: 2px;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid var(--c-border);
+  background: var(--c-bg);
+  transition:
+    background-color var(--kiva-motion-slow) var(--kiva-easing),
+    border-color var(--kiva-motion-slow) var(--kiva-easing),
+    box-shadow var(--kiva-motion-slow) var(--kiva-easing);
+}
+
+.header[data-scrolled] {
+  box-shadow: 0 12px 32px -24px var(--c-shadow);
+}
+
+.notice {
+  border-bottom: 1px solid var(--c-border);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  gap: var(--kiva-space-6);
+  height: var(--kiva-header-height);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--kiva-space-2);
+  margin-left: auto;
+}
+
+/* Desktop navigation breakpoint = token breakpoint.lg (1200px). */
+.desktopOnly {
+  display: none;
+}
+
+.signup {
+  display: none;
+}
+
+@media (min-width: 600px) {
+  .signup {
+    display: inline-flex;
+  }
+}
+
+@media (min-width: 1200px) {
+  .desktopOnly {
+    display: inline-flex;
+  }
+}

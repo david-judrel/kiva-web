@@ -1,0 +1,419 @@
+/*
+ * Realistic smartphone (pure CSS): brushed-titanium frame, black bezel,
+ * Dynamic Island with lens, hardware buttons, glass reflection, home indicator.
+ * The device is the same in both themes; the screen follows the theme
+ * (or ".dark-surface" when forced dark).
+ */
+.phone {
+  --metal-1: color-mix(in srgb, var(--kiva-forest) 55%, #9aa39e);
+  --metal-2: color-mix(in srgb, var(--kiva-forest) 85%, #9aa39e);
+  --metal-hi: color-mix(in srgb, var(--kiva-white) 55%, #9aa39e);
+  position: relative;
+  width: 300px;
+  height: 640px;
+  padding: 4px;
+  border-radius: 54px;
+  background: linear-gradient(
+    150deg,
+    var(--metal-hi) 0%,
+    var(--metal-2) 14%,
+    var(--metal-1) 38%,
+    var(--metal-2) 58%,
+    var(--metal-1) 80%,
+    var(--metal-hi) 100%
+  );
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.22),
+    inset 0 0 2px 2px rgb(0 0 0 / 0.35),
+    0 50px 100px -40px var(--c-shadow),
+    0 20px 40px -24px rgb(0 0 0 / 0.5),
+    var(--device-glow, 0 0 0 transparent);
+}
+
+/* Hardware buttons protrude from the frame edges. */
+.button {
+  position: absolute;
+  width: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--metal-2), var(--metal-hi), var(--metal-2));
+  box-shadow: inset 0 0 0 0.5px rgb(0 0 0 / 0.4);
+}
+
+.btnAction {
+  top: 112px;
+  left: -3px;
+  height: 28px;
+}
+
+.btnVolUp {
+  top: 162px;
+  left: -3px;
+  height: 52px;
+}
+
+.btnVolDown {
+  top: 226px;
+  left: -3px;
+  height: 52px;
+}
+
+.btnPower {
+  top: 190px;
+  right: -3px;
+  height: 84px;
+}
+
+.bezel {
+  height: 100%;
+  padding: 9px;
+  border-radius: 50px;
+  background: color-mix(in srgb, var(--kiva-forest) 30%, #000);
+  box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / 0.06);
+}
+
+.screen {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 41px;
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-size: 11px;
+}
+
+/* Glass reflection across the screen. */
+.screen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: linear-gradient(118deg, rgb(255 255 255 / 0.1) 0%, rgb(255 255 255 / 0.03) 28%, transparent 42%);
+  pointer-events: none;
+}
+
+.island {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  z-index: 4;
+  width: 96px;
+  height: 28px;
+  border-radius: var(--kiva-radius-pill);
+  background: #000;
+  transform: translateX(-50%);
+}
+
+.lens {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, color-mix(in srgb, var(--kiva-forest) 40%, #4a5a70) 0%, #05080a 70%);
+  box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--kiva-forest) 60%, #000);
+  transform: translateY(-50%);
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  padding: 4px 26px 0 30px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--c-heading);
+}
+
+.statusIcons {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.homeIndicator {
+  position: absolute;
+  bottom: 7px;
+  left: 50%;
+  z-index: 4;
+  width: 112px;
+  height: 4px;
+  border-radius: var(--kiva-radius-pill);
+  background: var(--c-heading);
+  opacity: 0.85;
+  transform: translateX(-50%);
+}
+
+.appHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  color: var(--c-heading);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.brandMark {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  background: var(--kiva-lime);
+  color: var(--kiva-forest);
+  font-size: 13px;
+}
+
+.screenTitle {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.headerIcons {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border: 1px solid var(--c-border);
+  border-radius: 50%;
+}
+
+.body {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 9px;
+  min-height: 0;
+  padding: 0 12px;
+}
+
+/* Portfolio card: always dark (".dark-surface"), lime curve in both themes. */
+.balance {
+  display: grid;
+  gap: 3px;
+  padding: 12px 12px 8px;
+  border: 1px solid var(--c-border);
+  border-radius: 18px;
+  background: var(--c-highlight-bg);
+  color: var(--c-text);
+}
+
+.balanceLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  color: var(--c-text-muted);
+}
+
+.balanceValue {
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--c-heading);
+}
+
+.balanceChart {
+  height: 50px;
+  margin-top: 4px;
+}
+
+.periods {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.period {
+  padding: 3px 8px;
+  border-radius: var(--kiva-radius-pill);
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--c-text-muted);
+}
+
+.periodActive {
+  background: var(--kiva-lime);
+  color: var(--kiva-forest);
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  padding: 2px 0;
+}
+
+.action {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--c-text);
+}
+
+.actionIcon {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--c-border);
+  border-radius: 50%;
+  background: var(--c-surface);
+  color: var(--c-accent-icon);
+}
+
+.listHead {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--c-heading);
+}
+
+.seeAll {
+  font-weight: 500;
+  color: var(--c-text-muted);
+}
+
+.list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr); /* long names truncate instead of widening the list */
+  gap: 3px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 8px;
+  border: 1px solid var(--c-border);
+  border-radius: 12px;
+  background: var(--c-surface);
+}
+
+
+.rowName {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--c-heading);
+}
+
+.rowName small {
+  overflow: hidden;
+  font-size: 9.5px;
+  font-weight: 400;
+  color: var(--c-text-muted);
+  text-overflow: ellipsis;
+}
+
+.rowSpark {
+  flex-shrink: 0;
+  width: 44px;
+  height: 18px;
+}
+
+.rowValue {
+  display: grid;
+  justify-items: end;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: var(--c-heading);
+}
+
+.rowValue > span,
+.rowValue small {
+  font-size: 9.5px;
+}
+
+.rowValue small {
+  font-weight: 500;
+  color: var(--c-text-muted);
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 12px;
+  border: 1px solid var(--c-border);
+  border-radius: 12px;
+  background: var(--c-surface);
+  color: var(--c-text-muted);
+}
+
+.chips {
+  display: flex;
+  gap: 6px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.chips span {
+  padding: 5px 10px;
+  border: 1px solid var(--c-border);
+  border-radius: var(--kiva-radius-pill);
+  background: var(--c-surface);
+}
+
+.chips .chipActive {
+  border-color: var(--kiva-lime);
+  background: var(--kiva-lime);
+  color: var(--kiva-forest);
+}
+
+.tabbar {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: auto;
+  padding: 8px 6px 22px;
+  border-top: 1px solid var(--c-border);
+  background: var(--c-surface);
+}
+
+.tab {
+  display: grid;
+  justify-items: center;
+  gap: 3px;
+  font-size: 8.5px;
+  color: var(--c-text-muted);
+}
+
+.tabActive {
+  font-weight: 700;
+  color: var(--c-heading);
+}
+
+.tabActive svg {
+  color: var(--c-accent-icon);
+}

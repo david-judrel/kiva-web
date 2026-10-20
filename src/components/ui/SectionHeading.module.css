@@ -1,0 +1,65 @@
+.heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--kiva-space-6);
+  margin-bottom: var(--kiva-space-8);
+}
+
+.copy {
+  display: grid;
+  gap: var(--kiva-space-3);
+  max-width: var(--kiva-prose-max);
+}
+
+.center {
+  justify-content: center;
+  text-align: center;
+}
+
+.center .copy {
+  margin-inline: auto;
+}
+
+.eyebrow {
+  font-size: var(--kiva-fs-caption);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+}
+
+.title {
+  font-size: var(--kiva-fs-title);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.pageTitle {
+  font-size: var(--kiva-fs-display);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.text {
+  font-size: var(--kiva-fs-body);
+  line-height: 1.6;
+  color: var(--c-text-muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--kiva-space-3);
+}
+
+.dark .title,
+.dark .pageTitle {
+  color: var(--c-heading);
+}
+
+.dark .eyebrow,
+.dark .text {
+  color: var(--c-text-muted);
+}

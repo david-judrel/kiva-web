@@ -1,0 +1,32 @@
+.form {
+  display: grid;
+  gap: var(--kiva-space-4);
+}
+
+.row {
+  display: grid;
+  gap: var(--kiva-space-4);
+}
+
+@media (min-width: 600px) {
+  .row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.inline {
+  display: grid;
+  gap: var(--kiva-space-3);
+}
+
+@media (min-width: 600px) {
+  .inline {
+    grid-template-columns: 1fr auto;
+    align-items: start;
+  }
+
+  /* Align the button with the input (label height + gap). */
+  .inlineButton {
+    margin-top: calc(var(--kiva-fs-body-sm) * 1.5 + var(--kiva-space-2));
+  }
+}

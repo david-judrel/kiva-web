@@ -1,0 +1,396 @@
+/* Official KIVA tokens (synced from ../design-tokens by scripts/sync-tokens.mjs). */
+@import "../styles/kiva-tokens.css";
+
+:root {
+  --kiva-font: var(--font-inter), "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  /* Layout extension (documented in KIVA_DESIGN_SYSTEM.md §9): section rhythm = 1× / 2× space-12. */
+  --kiva-section-y: var(--kiva-space-12);
+  --kiva-header-height: 64px;
+  /* Interaction states derived from the official palette (no new hues). */
+  --kiva-forest-hover: color-mix(in srgb, var(--kiva-forest) 86%, var(--kiva-white));
+  --kiva-lime-hover: color-mix(in srgb, var(--kiva-lime) 86%, var(--kiva-forest));
+  --kiva-on-dark-muted: color-mix(in srgb, var(--kiva-off-white) 72%, var(--kiva-forest));
+  --kiva-on-dark-border: color-mix(in srgb, var(--kiva-off-white) 16%, var(--kiva-forest));
+  --kiva-on-dark-surface: color-mix(in srgb, var(--kiva-off-white) 6%, var(--kiva-forest));
+  /* Marketing typography extension (KIVA_DESIGN_SYSTEM.md §9): website hero and section titles only. */
+  --kiva-fs-hero: clamp(32px, 9vw, 40px);
+  --kiva-fs-marketing: 28px;
+  /* Motion */
+  --kiva-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --kiva-reveal-duration: 800ms;
+  --kiva-shadow-hover: 0 18px 44px -22px var(--c-shadow);
+}
+
+/*
+ * Themes (KIVA_DESIGN_SYSTEM.md §9.11). Semantic tokens derived only from the
+ * official palette. Components use --c-* tokens, never raw palette values for
+ * themable surfaces. Scopes:
+ *   html[data-theme]  — user choice (set before paint by the inline script)
+ *   .dark-surface     — areas that stay dark in both themes (footer, notice, highlight cards)
+ *   .light-surface    — areas that stay light in both themes (lime blocks, step panels)
+ */
+:root,
+.light-surface {
+  color-scheme: light;
+  --c-bg: var(--kiva-off-white);
+  --c-bg-alt: var(--kiva-white);
+  --c-surface: var(--kiva-white);
+  --c-surface-2: var(--kiva-off-white);
+  --c-elevated: var(--kiva-white);
+  --c-border: var(--kiva-border);
+  --c-border-strong: var(--kiva-forest);
+  --c-hover: var(--kiva-soft-gray);
+  --c-text: var(--kiva-text-primary);
+  --c-text-muted: var(--kiva-text-secondary);
+  --c-heading: var(--kiva-forest);
+  --c-accent-text: var(--kiva-forest);
+  --c-accent-icon: var(--kiva-forest);
+  --c-chart: var(--kiva-forest);
+  --c-inverse-bg: var(--kiva-forest);
+  --c-inverse-text: var(--kiva-white);
+  --c-positive: var(--kiva-positive);
+  --c-negative: var(--kiva-negative);
+  --c-flat: var(--kiva-text-secondary);
+  --c-badge-bg: var(--kiva-warning-tint);
+  --c-badge-icon: var(--kiva-warning);
+  --c-field: var(--kiva-white);
+  --c-grid-line: color-mix(in srgb, var(--kiva-forest) 7%, transparent);
+  --c-shadow: rgb(16 28 23 / 0.22);
+  --c-highlight-bg: var(--kiva-forest);
+  --c-focus: var(--kiva-forest);
+  --c-mark-bg: var(--kiva-lime);
+  --c-mark-text: var(--kiva-forest);
+  /* Hero scene (background, beam, foliage) */
+  --c-hero-bg: var(--kiva-off-white);
+  --c-hero-glow: color-mix(in srgb, var(--kiva-lime) 45%, transparent);
+  --c-hero-beam: color-mix(in srgb, var(--kiva-lime) 70%, transparent);
+  --c-leaf: color-mix(in srgb, var(--kiva-forest) 14%, var(--kiva-off-white));
+  --c-glass: color-mix(in srgb, var(--kiva-white) 78%, transparent);
+}
+
+[data-theme="dark"],
+.dark-surface {
+  color-scheme: dark;
+  --c-bg: var(--kiva-forest);
+  --c-bg-alt: color-mix(in srgb, var(--kiva-off-white) 3%, var(--kiva-forest));
+  --c-surface: color-mix(in srgb, var(--kiva-off-white) 6%, var(--kiva-forest));
+  --c-surface-2: color-mix(in srgb, var(--kiva-off-white) 3%, var(--kiva-forest));
+  --c-elevated: color-mix(in srgb, var(--kiva-off-white) 10%, var(--kiva-forest));
+  --c-border: color-mix(in srgb, var(--kiva-off-white) 14%, var(--kiva-forest));
+  --c-border-strong: color-mix(in srgb, var(--kiva-lime) 55%, var(--kiva-forest));
+  --c-hover: color-mix(in srgb, var(--kiva-off-white) 12%, var(--kiva-forest));
+  --c-text: var(--kiva-off-white);
+  --c-text-muted: color-mix(in srgb, var(--kiva-off-white) 72%, var(--kiva-forest));
+  --c-heading: var(--kiva-off-white);
+  --c-accent-text: var(--kiva-lime);
+  --c-accent-icon: var(--kiva-lime);
+  --c-chart: var(--kiva-lime);
+  --c-inverse-bg: var(--kiva-off-white);
+  --c-inverse-text: var(--kiva-forest);
+  /* Positive / Negative lightened for contrast on Deep Forest (derived, no new hue). */
+  --c-positive: color-mix(in srgb, var(--kiva-positive) 45%, var(--kiva-off-white));
+  --c-negative: color-mix(in srgb, var(--kiva-negative) 50%, var(--kiva-off-white));
+  --c-flat: color-mix(in srgb, var(--kiva-off-white) 72%, var(--kiva-forest));
+  --c-badge-bg: color-mix(in srgb, var(--kiva-off-white) 12%, var(--kiva-forest));
+  --c-badge-icon: var(--kiva-lime);
+  --c-field: color-mix(in srgb, var(--kiva-off-white) 6%, var(--kiva-forest));
+  --c-grid-line: color-mix(in srgb, var(--kiva-off-white) 6%, transparent);
+  --c-shadow: rgb(0 0 0 / 0.6);
+  --c-highlight-bg: color-mix(in srgb, var(--kiva-off-white) 9%, var(--kiva-forest));
+  --c-focus: var(--kiva-lime);
+  --c-mark-bg: transparent;
+  --c-mark-text: var(--kiva-lime);
+  --c-hero-bg: color-mix(in srgb, var(--kiva-forest) 70%, #000);
+  --c-hero-glow: color-mix(in srgb, var(--kiva-lime) 26%, transparent);
+  --c-hero-beam: color-mix(in srgb, var(--kiva-lime) 85%, transparent);
+  --c-leaf: color-mix(in srgb, var(--kiva-lime) 10%, var(--kiva-forest));
+  --c-glass: color-mix(in srgb, var(--kiva-forest) 72%, transparent);
+}
+
+/* No stored choice and no JS: follow the system preference. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --c-bg: var(--kiva-forest);
+    --c-bg-alt: color-mix(in srgb, var(--kiva-off-white) 3%, var(--kiva-forest));
+    --c-surface: color-mix(in srgb, var(--kiva-off-white) 6%, var(--kiva-forest));
+    --c-surface-2: color-mix(in srgb, var(--kiva-off-white) 3%, var(--kiva-forest));
+    --c-elevated: color-mix(in srgb, var(--kiva-off-white) 10%, var(--kiva-forest));
+    --c-border: color-mix(in srgb, var(--kiva-off-white) 14%, var(--kiva-forest));
+    --c-border-strong: color-mix(in srgb, var(--kiva-lime) 55%, var(--kiva-forest));
+    --c-hover: color-mix(in srgb, var(--kiva-off-white) 12%, var(--kiva-forest));
+    --c-text: var(--kiva-off-white);
+    --c-text-muted: color-mix(in srgb, var(--kiva-off-white) 72%, var(--kiva-forest));
+    --c-heading: var(--kiva-off-white);
+    --c-accent-text: var(--kiva-lime);
+    --c-accent-icon: var(--kiva-lime);
+    --c-chart: var(--kiva-lime);
+    --c-inverse-bg: var(--kiva-off-white);
+    --c-inverse-text: var(--kiva-forest);
+    --c-positive: color-mix(in srgb, var(--kiva-positive) 45%, var(--kiva-off-white));
+    --c-negative: color-mix(in srgb, var(--kiva-negative) 50%, var(--kiva-off-white));
+    --c-flat: color-mix(in srgb, var(--kiva-off-white) 72%, var(--kiva-forest));
+    --c-badge-bg: color-mix(in srgb, var(--kiva-off-white) 12%, var(--kiva-forest));
+    --c-badge-icon: var(--kiva-lime);
+    --c-field: color-mix(in srgb, var(--kiva-off-white) 6%, var(--kiva-forest));
+    --c-grid-line: color-mix(in srgb, var(--kiva-off-white) 6%, transparent);
+    --c-shadow: rgb(0 0 0 / 0.6);
+    --c-highlight-bg: color-mix(in srgb, var(--kiva-off-white) 9%, var(--kiva-forest));
+    --c-focus: var(--kiva-lime);
+    --c-mark-bg: transparent;
+    --c-mark-text: var(--kiva-lime);
+    --c-hero-bg: color-mix(in srgb, var(--kiva-forest) 70%, #000);
+    --c-hero-glow: color-mix(in srgb, var(--kiva-lime) 26%, transparent);
+    --c-hero-beam: color-mix(in srgb, var(--kiva-lime) 85%, transparent);
+    --c-leaf: color-mix(in srgb, var(--kiva-lime) 10%, var(--kiva-forest));
+    --c-glass: color-mix(in srgb, var(--kiva-forest) 72%, transparent);
+  }
+}
+
+/* Smooth color change when the user toggles the theme. */
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition:
+    background-color var(--kiva-motion-slow) var(--kiva-easing),
+    border-color var(--kiva-motion-slow) var(--kiva-easing),
+    color var(--kiva-motion-slow) var(--kiva-easing) !important;
+}
+
+@media (min-width: 900px) {
+  :root {
+    --kiva-section-y: calc(var(--kiva-space-12) * 2);
+    --kiva-header-height: 72px;
+    --kiva-fs-hero: 64px;
+    --kiva-fs-marketing: 40px;
+  }
+}
+
+/*
+ * Scroll reveal, pure CSS (scroll-driven animations): no JavaScript and no DOM
+ * mutation, so server HTML always matches hydration. Elements with
+ * [data-reveal] rise in as they enter the viewport. Browsers without
+ * animation-timeline support, and reduced-motion users, simply see the content.
+ * Stagger with style={{ "--reveal-index": n }}.
+ */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    [data-reveal] {
+      animation: kiva-rise linear both;
+      animation-timeline: view();
+      /* Fixed distances (not %), so tall elements are fully shown once 160px of them is on screen. */
+      animation-range: entry calc(var(--reveal-index, 0) * 40px) entry calc(160px + var(--reveal-index, 0) * 40px);
+    }
+
+    [data-reveal="fade"] {
+      animation-name: kiva-fade;
+    }
+
+    [data-reveal="scale"] {
+      animation-name: kiva-scale;
+    }
+  }
+}
+
+@keyframes kiva-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes kiva-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(16px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* Faint grid used behind hero and page headers (line pattern, no color gradient). */
+.grid-pattern {
+  background-image:
+    linear-gradient(var(--c-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--c-grid-line) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 100%);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--kiva-header-height) + var(--kiva-space-6));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  background: var(--c-bg);
+  color: var(--c-text);
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+main {
+  flex: 1;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+figure,
+dl,
+dd {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--c-heading);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+::selection {
+  background: var(--kiva-lime);
+  color: var(--kiva-forest);
+}
+
+.container {
+  width: 100%;
+  max-width: calc(var(--kiva-content-max) + 2 * var(--kiva-gutter));
+  margin-inline: auto;
+  padding-inline: var(--kiva-gutter);
+}
+
+.section {
+  padding-block: var(--kiva-section-y);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--kiva-space-4);
+  top: -100px;
+  z-index: 100;
+  padding: var(--kiva-space-3) var(--kiva-space-4);
+  border-radius: var(--kiva-radius-button);
+  background: var(--kiva-forest);
+  color: var(--kiva-white);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: var(--kiva-space-2);
+}
+
+:focus-visible {
+  outline-color: var(--c-focus);
+}
+
+/* Chart drawing: a left-to-right wipe (robust with non-scaling strokes). */
+.draw-in {
+  animation: kiva-wipe 1.8s var(--kiva-ease-out) both;
+  animation-delay: var(--draw-delay, 300ms);
+}
+
+@keyframes kiva-wipe {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Entrance used on first paint (hero), independent of scrolling. */
+@keyframes kiva-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes kiva-float {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-12px);
+  }
+}
+
+/* Must follow the time-based .draw-in rule: charts draw as they scroll into view. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .draw-in {
+      animation: kiva-wipe linear both;
+      animation-timeline: view();
+      animation-range: entry 40px entry 260px;
+    }
+  }
+}

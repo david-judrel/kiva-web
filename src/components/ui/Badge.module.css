@@ -1,0 +1,46 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--kiva-space-1);
+  min-height: 24px;
+  padding: 2px var(--kiva-space-2);
+  border-radius: var(--kiva-radius-pill);
+  font-size: var(--kiva-fs-caption);
+  font-weight: 500;
+  line-height: 1.3;
+  white-space: nowrap;
+  color: var(--c-text);
+}
+
+.neutral {
+  background: var(--c-hover);
+}
+
+/* Tinted background + body text keeps AA contrast (design system §9.1). */
+.demo,
+.warning,
+.onDark {
+  background: var(--c-badge-bg);
+}
+
+.demo svg,
+.warning svg,
+.onDark svg {
+  color: var(--c-badge-icon);
+}
+
+.positive {
+  background: var(--kiva-positive-tint);
+}
+
+.positive svg {
+  color: var(--c-positive);
+}
+
+.negative {
+  background: var(--kiva-negative-tint);
+}
+
+.negative svg {
+  color: var(--c-negative);
+}

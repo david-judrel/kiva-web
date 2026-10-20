@@ -1,0 +1,11 @@
+{
+  "_comment": "Per-logo display on the 3D coins. fit: 'cover' (logo fills the disc, corners cropped; default) or 'contain' (logo fully visible, disc painted with 'bg', the logo's own background color, so no square edge shows). scale: optional zoom (1 = default).",
+  "orange-ci": { "fit": "contain", "bg": "#FF7900", "scale": 0.92 },
+  "sgci": { "fit": "cover", "scale": 1.0 },
+  "sonatel": { "fit": "cover", "scale": 1.15 },
+  "nestle-ci": { "fit": "cover", "scale": 1.05 },
+  "eti": { "fit": "cover", "scale": 1.1 },
+  "sogb": { "fit": "cover", "scale": 1.05 },
+  "boa-benin": { "fit": "cover", "scale": 1.0 },
+  "sodeci": { "fit": "contain", "bg": "#FFFFFF", "scale": 0.85 }
+}

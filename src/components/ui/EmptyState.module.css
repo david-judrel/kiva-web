@@ -1,0 +1,30 @@
+.empty {
+  display: grid;
+  justify-items: center;
+  gap: var(--kiva-space-2);
+  padding: var(--kiva-space-12) var(--kiva-space-4);
+  text-align: center;
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: var(--kiva-space-2);
+  border-radius: var(--kiva-radius-pill);
+  background: var(--c-hover);
+  color: var(--c-text-muted);
+}
+
+.title {
+  font-size: var(--kiva-fs-section);
+  font-weight: 600;
+  color: var(--c-heading);
+}
+
+.text {
+  max-width: 40ch;
+  margin-bottom: var(--kiva-space-2);
+  color: var(--c-text-muted);
+}

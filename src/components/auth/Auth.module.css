@@ -1,0 +1,90 @@
+.section {
+  padding-top: var(--kiva-space-8);
+}
+
+.grid {
+  display: grid;
+  gap: var(--kiva-space-6);
+  max-width: calc(960px + 2 * var(--kiva-gutter));
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr) 340px;
+    align-items: start;
+  }
+}
+
+.card {
+  display: grid;
+  gap: var(--kiva-space-6);
+}
+
+.header {
+  display: grid;
+  gap: var(--kiva-space-2);
+}
+
+.title {
+  font-size: var(--kiva-fs-title);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.subtitle {
+  color: var(--c-text-muted);
+}
+
+.form {
+  display: grid;
+  gap: var(--kiva-space-4);
+}
+
+.form > button[type="submit"] {
+  margin-top: var(--kiva-space-2);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--kiva-space-3);
+}
+
+.link {
+  font-size: var(--kiva-fs-body-sm);
+  font-weight: 600;
+  color: var(--c-heading);
+  text-underline-offset: 3px;
+}
+
+.switch {
+  font-size: var(--kiva-fs-body-sm);
+  text-align: center;
+  color: var(--c-text-muted);
+}
+
+.aside {
+  display: grid;
+  gap: var(--kiva-space-4);
+}
+
+.asideTitle {
+  font-size: var(--kiva-fs-section);
+  font-weight: 600;
+}
+
+.asideList {
+  display: grid;
+  gap: var(--kiva-space-3);
+  margin: 0;
+  padding-left: var(--kiva-space-4);
+  font-size: var(--kiva-fs-body-sm);
+  line-height: 1.6;
+  color: var(--c-text-muted);
+}
+
+.asideList li::marker {
+  color: var(--kiva-lime);
+}

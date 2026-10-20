@@ -1,0 +1,111 @@
+/*
+ * KIVA design tokens — CSS custom properties for the web.
+ * Mirrors design-tokens/kiva.tokens.json. Change both together.
+ */
+:root {
+  /* Colors — primary */
+  --kiva-forest: #101c17;
+  --kiva-lime: #b7ff72;
+  --kiva-off-white: #f7f8f4;
+  --kiva-white: #ffffff;
+
+  /* Colors — secondary */
+  --kiva-text-primary: #17211b;
+  --kiva-text-secondary: #68736b;
+  --kiva-soft-gray: #e7ebe5;
+  --kiva-border: #dde3dc;
+  --kiva-positive: #237a4b;
+  --kiva-negative: #c34444;
+  --kiva-warning: #a96b18;
+
+  /* Derived tints (10% status color on white) — see design system §9.3 */
+  --kiva-positive-tint: rgb(35 122 75 / 0.1);
+  --kiva-negative-tint: rgb(195 68 68 / 0.1);
+  --kiva-warning-tint: rgb(169 107 24 / 0.12);
+
+  /* Typography */
+  --kiva-font: "Inter", "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --kiva-fs-display: 32px;
+  --kiva-fs-title: 24px;
+  --kiva-fs-section: 18px;
+  --kiva-fs-body: 15px;
+  --kiva-fs-body-sm: 14px;
+  --kiva-fs-caption: 12px;
+
+  /* Spacing */
+  --kiva-space-1: 4px;
+  --kiva-space-2: 8px;
+  --kiva-space-3: 12px;
+  --kiva-space-4: 16px;
+  --kiva-space-6: 24px;
+  --kiva-space-8: 32px;
+  --kiva-space-10: 40px;
+  --kiva-space-12: 48px;
+
+  /* Radius */
+  --kiva-radius-button: 12px;
+  --kiva-radius-button-lg: 14px;
+  --kiva-radius-card: 16px;
+  --kiva-radius-card-lg: 20px;
+  --kiva-radius-pill: 999px;
+
+  /* Borders & shadows */
+  --kiva-border-default: 1px solid var(--kiva-border);
+  --kiva-shadow-raised: 0 1px 2px rgb(16 28 23 / 0.06);
+
+  /* Sizes */
+  --kiva-touch-target: 44px;
+  --kiva-button-height: 48px;
+  --kiva-button-height-sm: 40px;
+  --kiva-input-height: 48px;
+
+  /* Motion */
+  --kiva-motion-fast: 150ms;
+  --kiva-motion-base: 200ms;
+  --kiva-motion-slow: 250ms;
+  --kiva-easing: cubic-bezier(0.2, 0, 0, 1);
+
+  /* Layout */
+  --kiva-content-max: 1200px;
+  --kiva-prose-max: 680px;
+  --kiva-gutter: 16px;
+}
+
+@media (min-width: 900px) {
+  :root {
+    --kiva-fs-display: 40px;
+    --kiva-fs-title: 28px;
+    --kiva-fs-section: 20px;
+    --kiva-fs-body: 16px;
+    --kiva-fs-caption: 13px;
+    --kiva-gutter: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --kiva-motion-fast: 0ms;
+    --kiva-motion-base: 0ms;
+    --kiva-motion-slow: 0ms;
+  }
+}
+
+/* Base */
+body {
+  margin: 0;
+  background: var(--kiva-off-white);
+  color: var(--kiva-text-primary);
+  font-family: var(--kiva-font);
+  font-size: var(--kiva-fs-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.kiva-num {
+  font-variant-numeric: tabular-nums;
+}
+
+:focus-visible {
+  outline: 2px solid var(--kiva-forest);
+  outline-offset: 2px;
+}

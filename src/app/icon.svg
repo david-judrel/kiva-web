@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Provisional mark derived from the text wordmark until an official logo exists. -->
+  <rect width="64" height="64" rx="14" fill="#101C17"/>
+  <path d="M22 16v32M22 33l17-17M28 28l13 20" fill="none" stroke="#F7F8F4" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="45" cy="19" r="4" fill="#B7FF72"/>
+</svg>

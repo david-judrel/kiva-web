@@ -1,0 +1,15 @@
+# Netlify — KIVA public website (Next.js 16).
+# Netlify detects Next.js and applies its Next.js runtime automatically
+# (server rendering, proxy, image and cache handling): no plugin to install here.
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+  NEXT_TELEMETRY_DISABLED = "1"
+  # Set in the Netlify UI (Site configuration → Environment variables):
+  #   NEXT_PUBLIC_SITE_URL = https://<your-site>.netlify.app   (canonical URLs, sitemap, Open Graph)
+  # Do NOT set NEXT_PUBLIC_SHOW_ISSUER_LOGOS on a public deployment: issuer logos are
+  # third-party trademarks, for local demos only (and their files are not in the repo).

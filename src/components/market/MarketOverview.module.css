@@ -1,0 +1,262 @@
+.wrapper {
+  display: grid;
+  gap: var(--kiva-space-4);
+}
+
+.toolbar {
+  display: grid;
+  gap: var(--kiva-space-4);
+}
+
+@media (min-width: 900px) {
+  .toolbar {
+    grid-template-columns: minmax(260px, 340px) 1fr;
+    align-items: end;
+  }
+
+  .toolbar:has(.filters:only-child) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.filters {
+  display: flex;
+  gap: var(--kiva-space-2);
+  overflow-x: auto;
+  padding-bottom: 2px;
+  scrollbar-width: none;
+}
+
+.filters::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .filters {
+    flex-wrap: wrap;
+    overflow: visible;
+  }
+}
+
+.chip {
+  flex-shrink: 0;
+  min-height: var(--kiva-touch-target);
+  padding: 0 var(--kiva-space-4);
+  border: 1px solid var(--c-border);
+  border-radius: var(--kiva-radius-pill);
+  background: var(--c-surface);
+  font-size: var(--kiva-fs-body-sm);
+  font-weight: 500;
+  color: var(--c-text);
+  cursor: pointer;
+  transition: background-color var(--kiva-motion-fast) var(--kiva-easing), border-color var(--kiva-motion-fast) var(--kiva-easing);
+}
+
+.chip:hover {
+  border-color: var(--c-heading);
+}
+
+.chipActive,
+.chipActive:hover {
+  border-color: var(--c-heading);
+  background: var(--c-inverse-bg);
+  color: var(--c-inverse-text);
+}
+
+.tableCard {
+  border: 1px solid var(--c-border);
+  border-radius: var(--kiva-radius-card);
+  background: var(--c-surface);
+  overflow: hidden;
+}
+
+.tableHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--kiva-space-3);
+  padding: var(--kiva-space-4);
+  border-bottom: 1px solid var(--c-border);
+}
+
+@media (min-width: 900px) {
+  .tableHeader {
+    padding-inline: var(--kiva-space-6);
+  }
+}
+
+.count {
+  font-size: var(--kiva-fs-body-sm);
+  color: var(--c-text-muted);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--kiva-fs-body-sm);
+}
+
+.table th,
+.table td {
+  padding: var(--kiva-space-3) var(--kiva-space-4);
+  border-bottom: 1px solid var(--c-border);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.table thead th {
+  font-size: var(--kiva-fs-caption);
+  font-weight: 500;
+  color: var(--c-text-muted);
+  white-space: nowrap;
+}
+
+.table tbody tr:hover {
+  background: var(--c-surface-2);
+}
+
+@media (min-width: 900px) {
+  .table th:first-child,
+  .table td:first-child {
+    padding-left: var(--kiva-space-6);
+  }
+
+  .table th:last-child,
+  .table td:last-child {
+    padding-right: var(--kiva-space-6);
+  }
+
+  .table tbody th,
+  .table tbody td {
+    padding-block: var(--kiva-space-4);
+  }
+}
+
+.table .num {
+  text-align: right;
+}
+
+.company {
+  font-weight: 400;
+}
+
+/* Grid lives inside the cell so the <th> keeps table-cell layout and borders. */
+.companyInner {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: var(--kiva-space-3);
+  align-items: center;
+}
+
+.coin {
+  grid-row: span 2;
+}
+
+.name {
+  display: block;
+  font-weight: 600;
+  color: var(--c-heading);
+}
+
+.meta {
+  display: block;
+  margin-top: 2px;
+  font-size: var(--kiva-fs-caption);
+  color: var(--c-text-muted);
+}
+
+.ticker {
+  margin-right: var(--kiva-space-2);
+  font-weight: 600;
+}
+
+.price {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.trendCol {
+  width: 120px;
+}
+
+.trend {
+  display: block;
+  width: 96px;
+  height: 32px;
+  margin-left: auto;
+}
+
+.showSm {
+  display: inline;
+}
+
+/* Small screens: hide secondary columns; the sector moves under the name. */
+@media (max-width: 599px) {
+  .hideSm {
+    display: none;
+  }
+
+  .table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .table tbody tr {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "company price"
+      "company change";
+    align-items: center;
+    padding: var(--kiva-space-3) var(--kiva-space-4);
+    border-bottom: 1px solid var(--c-border);
+  }
+
+  .table tbody th,
+  .table tbody td {
+    padding: 0;
+    border: 0;
+  }
+
+  .table tbody th {
+    grid-area: company;
+    padding-right: var(--kiva-space-3);
+  }
+
+  .table tbody td.price {
+    grid-area: price;
+  }
+
+  .table tbody td:nth-child(4) {
+    grid-area: change;
+  }
+}
+
+@media (min-width: 600px) {
+  .showSm {
+    display: none;
+  }
+}
+
+.disclaimer {
+  padding: var(--kiva-space-3) var(--kiva-space-4);
+  font-size: var(--kiva-fs-caption);
+  line-height: 1.5;
+  color: var(--c-text-muted);
+  background: var(--c-surface-2);
+}
+
+@media (min-width: 900px) {
+  .disclaimer {
+    padding-inline: var(--kiva-space-6);
+  }
+}
+
+.search {
+  min-width: 0;
+}

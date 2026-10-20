@@ -1,0 +1,418 @@
+/*
+ * 3D-style illustrations (CSS only). Each panel is always dark (illustration
+ * stage), like the reference; colors derive from Deep Forest and Lime.
+ */
+.art {
+  --deep: color-mix(in srgb, var(--kiva-forest) 60%, #000);
+  --lime-glow: color-mix(in srgb, var(--kiva-lime) 55%, transparent);
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  border-radius: var(--kiva-radius-card);
+  background: var(--deep);
+  isolation: isolate;
+}
+
+/* ------------------------------------------------------------- Stack */
+.stack {
+  background:
+    radial-gradient(circle at 50% 60%, color-mix(in srgb, var(--kiva-lime) 18%, transparent), transparent 60%),
+    linear-gradient(180deg, color-mix(in srgb, var(--kiva-off-white) 6%, var(--deep)), var(--deep));
+}
+
+.stackSvg {
+  position: absolute;
+  inset: 8% 4% 4%;
+  width: 92%;
+  height: 88%;
+  overflow: visible;
+}
+
+.stackShadow {
+  fill: rgb(0 0 0 / 0.45);
+  filter: blur(10px);
+}
+
+.slab polygon {
+  stroke-linejoin: round;
+  stroke-width: 10;
+}
+
+.slab {
+  animation: slab 4.5s ease-in-out infinite alternate;
+}
+
+.slab_base {
+  --lift: 0px;
+}
+
+.slab_lime {
+  --lift: -10px;
+  filter: drop-shadow(0 0 22px var(--lime-glow));
+}
+
+.slab_top {
+  --lift: -22px;
+}
+
+@keyframes slab {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(var(--lift));
+  }
+}
+
+.slab_base .faceTop {
+  fill: color-mix(in srgb, var(--kiva-off-white) 24%, var(--deep));
+  stroke: color-mix(in srgb, var(--kiva-off-white) 24%, var(--deep));
+}
+
+.slab_base .faceLeft {
+  fill: color-mix(in srgb, var(--kiva-off-white) 12%, var(--deep));
+  stroke: color-mix(in srgb, var(--kiva-off-white) 12%, var(--deep));
+}
+
+.slab_base .faceRight {
+  fill: var(--deep);
+  stroke: var(--deep);
+}
+
+.slab_lime .faceTop {
+  fill: var(--kiva-lime);
+  stroke: var(--kiva-lime);
+}
+
+.slab_lime .faceLeft {
+  fill: color-mix(in srgb, var(--kiva-lime) 72%, var(--kiva-forest));
+  stroke: color-mix(in srgb, var(--kiva-lime) 72%, var(--kiva-forest));
+}
+
+.slab_lime .faceRight {
+  fill: color-mix(in srgb, var(--kiva-lime) 50%, var(--kiva-forest));
+  stroke: color-mix(in srgb, var(--kiva-lime) 50%, var(--kiva-forest));
+}
+
+.slab_top .faceTop {
+  fill: color-mix(in srgb, var(--kiva-off-white) 16%, var(--kiva-forest));
+  stroke: color-mix(in srgb, var(--kiva-lime) 70%, var(--kiva-forest));
+  stroke-width: 3;
+}
+
+.slab_top .faceLeft {
+  fill: color-mix(in srgb, var(--kiva-forest) 75%, #000);
+  stroke: color-mix(in srgb, var(--kiva-forest) 75%, #000);
+}
+
+.slab_top .faceRight {
+  fill: color-mix(in srgb, var(--kiva-forest) 55%, #000);
+  stroke: color-mix(in srgb, var(--kiva-forest) 55%, #000);
+}
+
+.labelBg {
+  fill: var(--kiva-lime);
+}
+
+.labelText {
+  fill: var(--kiva-forest);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+
+/* --------------------------------------------------------------- Orb */
+.orbCore {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 120px;
+  height: 120px;
+  border-radius: 50% 50% 50% 18%;
+  background: radial-gradient(circle at 35% 30%, color-mix(in srgb, var(--kiva-lime) 50%, #fff) 0%, var(--kiva-lime) 35%, color-mix(in srgb, var(--kiva-lime) 65%, var(--kiva-forest)) 100%);
+  color: var(--kiva-forest);
+  box-shadow:
+    inset 0 -10px 20px color-mix(in srgb, var(--kiva-forest) 30%, transparent),
+    0 0 60px var(--lime-glow);
+  animation: orb 4s ease-in-out infinite alternate;
+}
+
+.orbRing {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, color-mix(in srgb, var(--kiva-off-white) 14%, var(--deep)), var(--deep) 70%);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--kiva-off-white) 12%, transparent),
+    0 30px 60px rgb(0 0 0 / 0.6);
+  transform: translate(-50%, -50%);
+}
+
+@keyframes orb {
+  from {
+    transform: translateY(4px) scale(0.98);
+  }
+  to {
+    transform: translateY(-4px) scale(1.02);
+  }
+}
+
+.stripes {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: repeating-linear-gradient(90deg, color-mix(in srgb, var(--kiva-lime) 45%, transparent) 0 2px, transparent 2px 9px);
+  mask-image: linear-gradient(180deg, #000 0%, rgb(0 0 0 / 0.6) 50%, transparent 100%);
+  opacity: 0.55;
+}
+
+.pill {
+  position: absolute;
+  padding: 9px 16px;
+  border: 1px solid color-mix(in srgb, var(--kiva-off-white) 16%, transparent);
+  border-radius: var(--kiva-radius-pill);
+  background: color-mix(in srgb, var(--deep) 75%, transparent);
+  color: var(--kiva-off-white);
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  backdrop-filter: blur(10px);
+}
+
+.pillTop {
+  top: 16%;
+  left: 10%;
+}
+
+.pillBottom {
+  right: 8%;
+  bottom: 14%;
+}
+
+.dot {
+  position: absolute;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--kiva-off-white) 12%, var(--deep));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--kiva-off-white) 16%, transparent);
+}
+
+.dotA {
+  top: 26%;
+  right: 14%;
+  width: 22px;
+  height: 22px;
+}
+
+.dotB {
+  bottom: 28%;
+  left: 14%;
+  width: 12px;
+  height: 12px;
+}
+
+/* ----------------------------------------------------------- Natures */
+.natures {
+  background:
+    radial-gradient(circle at 30% 20%, color-mix(in srgb, var(--kiva-lime) 14%, transparent), transparent 55%),
+    linear-gradient(color-mix(in srgb, var(--kiva-off-white) 5%, transparent) 1px, transparent 1px) 0 0 / 28px 28px,
+    linear-gradient(90deg, color-mix(in srgb, var(--kiva-off-white) 5%, transparent) 1px, transparent 1px) 0 0 / 28px 28px,
+    var(--deep);
+}
+
+.naturesScene {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 14px;
+  transform: rotate(-8deg);
+}
+
+.naturePill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 170px;
+  padding: 12px 20px 12px 12px;
+  border-radius: var(--kiva-radius-pill);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--kiva-off-white) 20%, var(--deep)), color-mix(in srgb, var(--kiva-off-white) 6%, var(--deep)));
+  color: var(--kiva-off-white);
+  font-size: 15px;
+  font-weight: 700;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.18),
+    0 6px 0 color-mix(in srgb, var(--kiva-forest) 50%, #000),
+    0 18px 30px rgb(0 0 0 / 0.5);
+  transform: translateX(calc((var(--i) - 1.5) * 18px));
+  animation: pill 3.6s ease-in-out infinite alternate;
+  animation-delay: calc(var(--i) * 0.25s);
+}
+
+.naturePill[data-tone="0"] {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--kiva-lime) 80%, #fff), var(--kiva-lime));
+  color: var(--kiva-forest);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.5),
+    0 6px 0 color-mix(in srgb, var(--kiva-lime) 45%, var(--kiva-forest)),
+    0 0 40px var(--lime-glow);
+}
+
+@keyframes pill {
+  to {
+    transform: translateX(calc((var(--i) - 1.5) * 18px)) translateY(-6px);
+  }
+}
+
+.natureDot {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--kiva-forest);
+  color: var(--kiva-lime);
+  box-shadow: inset 0 0 0 2px var(--kiva-lime);
+}
+
+.naturePill[data-tone="2"] .natureDot {
+  background: transparent;
+}
+
+.naturePill[data-tone="3"] .natureDot {
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--kiva-off-white) 45%, transparent);
+}
+
+/* ------------------------------------------------------------ Shield */
+.shield {
+  background:
+    radial-gradient(circle at 60% 45%, color-mix(in srgb, var(--kiva-lime) 22%, transparent), transparent 55%),
+    linear-gradient(160deg, color-mix(in srgb, var(--kiva-off-white) 55%, var(--deep)) 0%, color-mix(in srgb, var(--kiva-off-white) 12%, var(--deep)) 45%, var(--deep) 100%);
+}
+
+.tube {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 130px;
+  border-radius: var(--kiva-radius-pill);
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.22), rgb(255 255 255 / 0.04) 40%, rgb(0 0 0 / 0.25));
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.18),
+    inset 0 -20px 40px rgb(0 0 0 / 0.35);
+  transform: translate(-50%, -50%) rotate(-52deg);
+}
+
+.bolts {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.bolts path {
+  stroke: var(--kiva-lime);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 6px var(--kiva-lime));
+  stroke-dasharray: 420;
+  stroke-dashoffset: 420;
+  animation: bolt 2.8s ease-in-out infinite;
+}
+
+.bolts path:nth-child(2) {
+  animation-delay: 0.6s;
+}
+
+.bolts path:nth-child(3) {
+  animation-delay: 1.2s;
+}
+
+@keyframes bolt {
+  0% {
+    stroke-dashoffset: 420;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  60% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+.shieldCoin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--kiva-forest) 60%, #000);
+  box-shadow:
+    4px 4px 0 color-mix(in srgb, var(--kiva-lime) 55%, var(--kiva-forest)),
+    8px 8px 0 color-mix(in srgb, var(--kiva-lime) 30%, var(--kiva-forest)),
+    12px 12px 0 color-mix(in srgb, var(--kiva-forest) 60%, #000),
+    20px 30px 50px rgb(0 0 0 / 0.6),
+    0 0 70px var(--lime-glow);
+  transform: translate(-50%, -50%) rotate(-12deg);
+  animation: coin-float 4s ease-in-out infinite alternate;
+}
+
+@keyframes coin-float {
+  to {
+    transform: translate(-50%, calc(-50% - 8px)) rotate(-6deg);
+  }
+}
+
+.shieldFace {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 26%, color-mix(in srgb, var(--kiva-off-white) 38%, var(--kiva-forest)) 0%, transparent 45%),
+    radial-gradient(circle, color-mix(in srgb, var(--kiva-off-white) 10%, var(--kiva-forest)), color-mix(in srgb, var(--kiva-forest) 60%, #000));
+  color: var(--kiva-lime);
+  box-shadow:
+    inset 0 0 0 6px var(--kiva-lime),
+    inset 0 0 0 14px color-mix(in srgb, var(--kiva-forest) 60%, #000),
+    inset 0 0 0 16px color-mix(in srgb, var(--kiva-lime) 45%, transparent);
+  filter: drop-shadow(0 0 10px var(--lime-glow));
+}
+
+.spark {
+  position: absolute;
+  top: 16%;
+  right: 16%;
+  color: var(--kiva-lime);
+  filter: drop-shadow(0 0 8px var(--kiva-lime));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slab,
+  .orbCore,
+  .naturePill,
+  .shieldCoin,
+  .bolts path {
+    animation: none;
+  }
+
+  .bolts path {
+    stroke-dashoffset: 0;
+  }
+}

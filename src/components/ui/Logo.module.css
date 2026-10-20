@@ -1,0 +1,14 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--kiva-touch-target);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--c-heading);
+  text-decoration: none;
+}
+
+.dark {
+  color: var(--kiva-off-white);
+}

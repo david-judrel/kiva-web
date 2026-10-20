@@ -1,0 +1,159 @@
+.field {
+  display: grid;
+  gap: var(--kiva-space-2);
+}
+
+.label {
+  font-size: var(--kiva-fs-body-sm);
+  font-weight: 600;
+  color: var(--c-text);
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  min-height: var(--kiva-input-height);
+  border: 1px solid var(--c-border);
+  border-radius: var(--kiva-radius-button);
+  background: var(--c-surface);
+  transition: border-color var(--kiva-motion-fast) var(--kiva-easing), box-shadow var(--kiva-motion-fast) var(--kiva-easing);
+}
+
+.control:hover {
+  border-color: color-mix(in srgb, var(--c-border) 50%, var(--c-text-muted));
+}
+
+.control:focus-within {
+  border-color: var(--c-heading);
+  box-shadow: 0 0 0 1px var(--c-border-strong);
+}
+
+.control :focus-visible {
+  outline: none;
+}
+
+.invalid,
+.invalid:hover {
+  border-color: var(--c-negative);
+}
+
+.invalid:focus-within {
+  border-color: var(--c-negative);
+  box-shadow: 0 0 0 1px var(--c-negative);
+}
+
+.multiline {
+  align-items: stretch;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  min-height: calc(var(--kiva-input-height) - 2px);
+  padding: 0 var(--kiva-space-4);
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  font-size: 16px; /* prevents iOS zoom on focus */
+}
+
+.input::placeholder {
+  color: var(--c-text-muted);
+  opacity: 0.8;
+}
+
+.textarea {
+  min-height: 140px;
+  padding-block: var(--kiva-space-3);
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.select {
+  appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%2368736B' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--kiva-space-3) center;
+  padding-right: var(--kiva-space-10);
+}
+
+.leading {
+  display: grid;
+  place-items: center;
+  padding-left: var(--kiva-space-3);
+  color: var(--c-text-muted);
+}
+
+.leading + .input {
+  padding-left: var(--kiva-space-2);
+}
+
+.toggle {
+  display: grid;
+  place-items: center;
+  width: var(--kiva-touch-target);
+  height: var(--kiva-touch-target);
+  margin-right: 2px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--c-text-muted);
+  cursor: pointer;
+}
+
+.toggle:hover {
+  color: var(--c-heading);
+}
+
+.toggle:focus-visible {
+  outline: 2px solid var(--c-focus);
+  outline-offset: -2px;
+}
+
+.hint {
+  font-size: var(--kiva-fs-caption);
+  color: var(--c-text-muted);
+}
+
+.error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--kiva-space-1);
+  font-size: var(--kiva-fs-caption);
+  font-weight: 500;
+  color: var(--c-negative);
+}
+
+.error svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.checkboxRow {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--kiva-space-3);
+}
+
+.checkbox {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin: 2px 0 0;
+  accent-color: var(--c-heading);
+  cursor: pointer;
+}
+
+.checkboxLabel {
+  font-size: var(--kiva-fs-body-sm);
+  line-height: 1.5;
+  color: var(--c-text);
+  cursor: pointer;
+}
+
+.checkboxLabel a {
+  font-weight: 600;
+  color: var(--c-heading);
+}

@@ -1,0 +1,41 @@
+.sparkline {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.line {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.area {
+  fill: currentColor;
+  opacity: 0.1;
+  stroke: none;
+}
+
+.up {
+  color: var(--c-positive);
+}
+
+.down {
+  color: var(--c-negative);
+}
+
+.flat {
+  color: var(--c-flat);
+}
+
+/* Brand curve (hero, portfolio): Deep Forest in light theme, Lime in dark theme. */
+.dark {
+  color: var(--c-chart);
+}
+
+.dark .area {
+  fill: var(--kiva-lime);
+  opacity: 0.28;
+}

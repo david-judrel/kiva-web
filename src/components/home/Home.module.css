@@ -1,0 +1,1840 @@
+/* All colors come from theme tokens (--c-*), except the brand Lime accents. */
+
+/* ================================================================ Shared */
+
+.band {
+  background: var(--c-bg-alt);
+  border-block: 1px solid var(--c-border);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--kiva-space-2);
+  margin-bottom: var(--kiva-space-3);
+  font-size: var(--kiva-fs-caption);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-accent-text);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--kiva-lime);
+}
+
+.sectionTitle {
+  font-size: var(--kiva-fs-marketing);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  color: var(--c-heading);
+}
+
+.sectionText {
+  max-width: 52ch;
+  margin-top: var(--kiva-space-3);
+  line-height: 1.6;
+  color: var(--c-text-muted);
+}
+
+.sectionHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--kiva-space-6);
+  margin-bottom: var(--kiva-space-8);
+}
+
+.cardTitle {
+  font-size: var(--kiva-fs-section);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--c-heading);
+}
+
+.cardText {
+  font-size: var(--kiva-fs-body-sm);
+  line-height: 1.6;
+  color: var(--c-text-muted);
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--kiva-space-3);
+}
+
+.footnote {
+  margin-top: var(--kiva-space-6);
+  font-size: var(--kiva-fs-caption);
+  color: var(--c-text-muted);
+}
+
+/* Cards: themed surface + hairline border, lift on hover. */
+.featureCard,
+.marketCard,
+.learnCard,
+.tile {
+  border: 1px solid var(--c-border);
+  border-radius: var(--kiva-radius-card-lg);
+  background: var(--c-surface);
+  transition:
+    transform var(--kiva-motion-slow) var(--kiva-ease-out),
+    border-color var(--kiva-motion-slow) var(--kiva-ease-out),
+    box-shadow var(--kiva-motion-slow) var(--kiva-ease-out);
+}
+
+@media (hover: hover) {
+  .featureCard:hover,
+  .marketCard:hover,
+  .learnCard:hover {
+    border-color: var(--c-border-strong);
+    box-shadow: var(--kiva-shadow-hover);
+    transform: translateY(-6px);
+  }
+}
+
+/* ================================================================= Hero */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--c-hero-bg);
+  color: var(--c-text);
+}
+
+/* ---- Decorative scene ---- */
+.scene {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.sceneGlow {
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 70%;
+  height: 120%;
+  background: radial-gradient(closest-side, var(--c-hero-glow), transparent);
+  opacity: 0.9;
+}
+
+/* Diagonal light beam crossing behind the phone (bottom-left → top-right). */
+.beam,
+.beamCore {
+  position: absolute;
+  left: 44%;
+  top: 46%;
+  width: 70%;
+  transform-origin: left center;
+  transform: rotate(-28deg);
+}
+
+.beam {
+  height: 190px;
+  background: linear-gradient(90deg, transparent 0%, var(--c-hero-beam) 45%, transparent 100%);
+  filter: blur(40px);
+  opacity: 0.55;
+}
+
+.beamCore {
+  height: 110px;
+  margin-top: 40px;
+  background: linear-gradient(90deg, transparent 0%, var(--c-hero-beam) 30%, color-mix(in srgb, var(--kiva-lime) 30%, transparent) 70%, transparent 100%);
+  clip-path: polygon(0 35%, 100% 0, 100% 60%, 0 100%);
+  opacity: 0.75;
+  animation: beam 6s ease-in-out infinite alternate;
+}
+
+@keyframes beam {
+  from {
+    opacity: 0.55;
+  }
+  to {
+    opacity: 0.85;
+  }
+}
+
+.leaves {
+  position: absolute;
+  left: -40px;
+  bottom: -20px;
+  width: 260px;
+  height: 520px;
+  color: var(--c-leaf);
+  filter: blur(1.5px);
+  opacity: 0.9;
+}
+
+.candles {
+  position: absolute;
+  right: 1.5%;
+  top: 14%;
+  width: 210px;
+  height: 260px;
+  opacity: 0.35;
+}
+
+.candles rect {
+  fill: color-mix(in srgb, var(--kiva-lime) 30%, var(--c-hero-bg));
+}
+
+.candles line {
+  stroke: color-mix(in srgb, var(--kiva-lime) 30%, var(--c-hero-bg));
+  stroke-width: 1.5;
+}
+
+@media (max-width: 1199px) {
+  .candles,
+  .leaves {
+    display: none;
+  }
+}
+
+/* ---- Layout ---- */
+.heroInner {
+  position: relative;
+  display: grid;
+  gap: var(--kiva-space-12);
+  align-items: center;
+  padding-block: var(--kiva-space-10) var(--kiva-space-12);
+}
+
+@media (min-width: 900px) {
+  .heroInner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    min-height: 780px;
+    padding-block: var(--kiva-space-12);
+  }
+}
+
+.heroCopy {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--kiva-space-6);
+  justify-items: start;
+  min-width: 0;
+}
+
+.enter,
+.word {
+  animation: kiva-rise 900ms var(--kiva-ease-out) both;
+}
+
+.word {
+  display: inline-block;
+}
+
+/* Eyebrow pill: status + market tag, as two segments. */
+.heroEyebrow {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid var(--c-border);
+  border-radius: var(--kiva-radius-pill);
+  background: var(--c-glass);
+  font-size: var(--kiva-fs-caption);
+  font-weight: 600;
+  backdrop-filter: blur(8px);
+}
+
+.eyebrowMain {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--kiva-space-2);
+  padding: 7px var(--kiva-space-4) 7px var(--kiva-space-3);
+  color: var(--c-heading);
+}
+
+.eyebrowTag {
+  padding: 7px var(--kiva-space-4);
+  border-left: 1px solid var(--c-border);
+  color: var(--c-text-muted);
+}
+
+.pulse {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--kiva-lime);
+  box-shadow: 0 0 10px var(--kiva-lime);
+}
+
+.pulse::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--kiva-lime);
+  animation: pulse 2.4s var(--kiva-ease-out) infinite;
+}
+
+@keyframes pulse {
+  from {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(3);
+  }
+}
+
+.heroTitle {
+  font-size: var(--kiva-fs-hero);
+}
+
+@media (min-width: 900px) {
+  .heroTitle {
+    font-size: min(58px, 4.6vw);
+    white-space: nowrap;
+  }
+}
+
+.heroTitle {
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+  color: var(--c-heading);
+}
+
+/* Middle line: Lime on dark; Lime marker behind Deep Forest text on light. */
+.mark {
+  padding: 0 0.1em;
+  margin: 0 -0.05em;
+  border-radius: 0.16em;
+  background: var(--c-mark-bg);
+  color: var(--c-mark-text);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.heroText {
+  max-width: 48ch;
+  font-size: var(--kiva-fs-body);
+  line-height: 1.6;
+  color: var(--c-text-muted);
+}
+
+@media (min-width: 900px) {
+  .heroText {
+    font-size: 17px;
+  }
+}
+
+.heroNote {
+  display: flex;
+  align-items: center;
+  gap: var(--kiva-space-2);
+  margin-top: var(--kiva-space-3);
+  font-size: var(--kiva-fs-caption);
+  color: var(--c-text-muted);
+}
+
+.heroNote svg {
+  flex-shrink: 0;
+}
+
+/* Pill signup */
+.signupWrap {
+  justify-self: stretch;
+}
+
+.signup {
+  display: grid;
+  gap: var(--kiva-space-3);
+  width: min(100%, 490px);
+}
+
+.signupRow {
+  display: flex;
+  align-items: center;
+  gap: var(--kiva-space-2);
+  padding: 5px 5px 5px var(--kiva-space-4);
+  border: 1px solid var(--c-border);
+  border-radius: var(--kiva-radius-pill);
+  background: var(--c-glass);
+  backdrop-filter: blur(8px);
+  transition: border-color var(--kiva-motion-fast) var(--kiva-easing);
+}
+
+.signupRow:focus-within {
+  border-color: var(--c-border-strong);
+}
+
+.signupRow > button {
+  border-radius: var(--kiva-radius-pill);
+  box-shadow: 0 0 28px -6px color-mix(in srgb, var(--kiva-lime) 70%, transparent);
+}
+
+/* Small screens: the button drops below the field, full width. */
+@media (max-width: 599px) {
+  .signupRow {
+    flex-wrap: wrap;
+    padding: 6px;
+    border-radius: 22px;
+  }
+
+  .signupRow > svg {
+    margin-left: var(--kiva-space-3);
+  }
+
+  .signupInput {
+    min-height: 44px;
+  }
+
+  .signupRow > button {
+    flex-basis: 100%;
+  }
+}
+
+.signupIcon {
+  flex-shrink: 0;
+  color: var(--c-text-muted);
+}
+
+.signupInput {
+  flex: 1;
+  width: 0; /* ignore the intrinsic size of <input> so the row can shrink */
+  min-width: 0;
+  padding: 0 var(--kiva-space-1);
+  border: 0;
+  background: transparent;
+  color: var(--c-text);
+  font-size: 16px;
+}
+
+.signupInput::placeholder {
+  color: var(--c-text-muted);
+}
+
+.signupInput:focus-visible {
+  outline: none;
+}
+
+.signupError {
+  display: flex;
+  gap: var(--kiva-space-1);
+  font-size: var(--kiva-fs-caption);
+  font-weight: 500;
+  color: var(--c-negative);
+}
+
+/* Store badges (informative, the app is not published yet). */
+.stores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--kiva-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.store {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--kiva-space-3);
+  min-width: 132px;
+  padding: 8px var(--kiva-space-4);
+  border: 1px solid var(--c-border);
+  border-radius: var(--kiva-radius-button);
+  background: var(--c-glass);
+  color: var(--c-heading);
+  font-size: var(--kiva-fs-body-sm);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.store span {
+  display: grid;
+}
+
+.store small {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--c-text-muted);
+}
+
+/* ---- Visual: realistic phone, glass cards around ---- */
+.heroVisual {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 680px;
+}
+
+.phoneWrap {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 0 70px;
+  animation: kiva-rise 1200ms var(--kiva-ease-out) 300ms both;
+}
+
+/* Straight, realistic device with a soft lime halo behind it. */
+.heroPhone {
+  --device-glow: 0 0 140px -30px color-mix(in srgb, var(--kiva-lime) 60%, transparent);
+}
+
+@media (max-width: 599px) {
+  .heroVisual {
+    min-height: 0;
+  }
+
+  .phoneWrap {
+    margin: -40px 0 0;
+    transform: scale(0.86);
+  }
+}
+
+/* Glass cards: tinted translucent surface, hairline border, slight tilt, gentle float. */
+.glassCard {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: var(--kiva-space-3);
+  min-width: 200px;
+  padding: var(--kiva-space-4);
+  border: 1px solid color-mix(in srgb, var(--c-heading) 14%, transparent);
+  border-radius: var(--kiva-radius-card);
+  background: var(--c-glass);
+  color: var(--c-text);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--kiva-off-white) 10%, transparent),
+    0 24px 48px -24px var(--c-shadow);
+  backdrop-filter: blur(14px);
+  text-decoration: none;
+  animation:
+    kiva-rise 1000ms var(--kiva-ease-out) both,
+    kiva-float 5s ease-in-out infinite alternate;
+}
+
+.cardA {
+  top: 8%;
+  left: -6%;
+  rotate: -4deg;
+  animation-delay: 700ms, 1.7s;
+}
+
+.cardB {
+  top: 33%;
+  left: -8%;
+  rotate: -3deg;
+  animation-delay: 850ms, 2.2s;
+}
+
+.cardC {
+  top: 12%;
+  right: -16%;
+  rotate: 4deg;
+  animation-delay: 1000ms, 2.8s;
+}
+
+.cardD {
+  top: 42%;
+  right: -18%;
+  rotate: 3deg;
+  animation-delay: 1150ms, 3.3s;
+}
+
+.cardC:hover,
+.cardD:hover {
+  border-color: var(--c-border-strong);
+}
+
+@media (max-width: 1199px) {
+  .cardB,
+  .cardD {
+    display: none;
+  }
+}
+
+@media (max-width: 599px) {
+  .cardA {
+    top: 2%;
+    left: 0;
+  }
+
+  .cardC {
+    top: auto;
+    right: 0;
+    bottom: 8%;
+  }
+}
+
+.glassBody {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+  font-size: var(--kiva-fs-caption);
+}
+
+.glassTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--kiva-space-2);
+  font-size: var(--kiva-fs-body-sm);
+  font-weight: 700;
+  color: var(--c-heading);
+}
+
+.glassValue {
+  font-size: var(--kiva-fs-body-sm);
+  font-variant-numeric: tabular-nums;
+  color: var(--c-text);
+}
+
+.glassMeta {
+  max-width: 18ch;
+  line-height: 1.4;
+  color: var(--c-text-muted);
+}
+
+/* "Démo" tag sits on the card edge so it does not widen the card. */
+.glassDemo {
+  position: absolute;
+  top: -11px;
+  right: 14px;
+}
+
+.glassSpark {
+  width: 84px;
+  height: 44px;
+}
+
+.glassIcon {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid color-mix(in srgb, var(--kiva-lime) 45%, transparent);
+  border-radius: 12px;
+  color: var(--c-accent-icon);
+}
+
+.glassIconLime {
+  border-color: var(--kiva-lime);
+  border-radius: 50%;
+  background: var(--kiva-lime);
+  color: var(--kiva-forest);
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .beamCore {
+    animation: none;
+  }
+}
+
+/* =============================================================== Ticker */
+
+/* Lime in both themes: the brand's signature band. */
+.ticker {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  min-height: 56px;
+  background: var(--kiva-lime);
+  color: var(--kiva-forest);
+}
+
+.tickerLabel {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--kiva-space-2);
+  margin-left: var(--kiva-space-4);
+  padding: 6px var(--kiva-space-3);
+  border-radius: var(--kiva-radius-pill);
+  background: var(--kiva-forest);
+  color: var(--kiva-off-white);
+  font-size: var(--kiva-fs-caption);
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 16px 0 16px -4px var(--kiva-lime);
+}
+
+.tickerLabel svg {
+  color: var(--kiva-lime);
+}
+
+.tickerViewport {
+  flex: 1;
+  overflow: hidden;
+}
+
+.tickerTrack {
+  display: flex;
+  width: max-content;
+  animation: ticker 60s linear infinite;
+}
+
+.ticker:hover .tickerTrack {
+  animation-play-state: paused;
+}
+
+@keyframes ticker {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tickerViewport {
+    overflow-x: auto;
+  }
+
+  .tickerTrack {
+    animation: none;
+  }
+}
+
+.tickerList {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tickerItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--kiva-space-2);
+  padding: 0 var(--kiva-space-6);
+  font-size: var(--kiva-fs-body-sm);
+  white-space: nowrap;
+}
+
+.tickerItem::after {
+  content: "";
+  width: 5px;
+  height: 5px;
+  margin-left: var(--kiva-space-6);
+  margin-right: calc(-1 * var(--kiva-space-6));
+  border-radius: 50%;
+  background: var(--kiva-forest);
+}
+
+.tickerName {
+  font-weight: 600;
+}
+
+.tickerPrice {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================================================ Features */
+
+.featuresLayout {
+  display: grid;
+  gap: var(--kiva-space-8);
+}
+
+@media (min-width: 900px) {
+  .featuresLayout {
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: var(--kiva-space-10);
+    align-items: start;
+  }
+}
+
+.featuresIntro {
+  display: grid;
+  justify-items: start;
+  gap: var(--kiva-space-6);
+}
+
+.carousel {
+  display: grid;
+  gap: var(--kiva-space-6);
+  min-width: 0;
+}
+
+.carouselTrack {
+  display: grid;
+  grid-auto-columns: minmax(270px, 320px);
+  grid-auto-flow: column;
+  gap: var(--kiva-space-4);
+  margin: 0;
+  padding: 0 0 var(--kiva-space-2);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  list-style: none;
+}
+
+.carouselTrack::-webkit-scrollbar {
+  display: none;
+}
+
+.carouselTrack > li {
+  scroll-snap-align: start;
+}
+
+.carouselControls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--kiva-space-4);
+}
+
+.arrows {
+  display: flex;
+  gap: var(--kiva-space-2);
+}
+
+.dots {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* Visible dot is small; the button keeps a comfortable hit area. */
+.dot {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.dot::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: var(--kiva-radius-pill);
+  background: var(--c-border);
+  transition: width var(--kiva-motion-base) var(--kiva-ease-out), background-color var(--kiva-motion-base) var(--kiva-easing);
+}
+
+.dot:hover::before {
+  background: var(--c-text-muted);
+}
+
+.dotActive {
+  width: 34px;
+}
+
+.dotActive::before {
+  width: 28px;
+  background: var(--c-heading);
+  box-shadow: 0 0 0 2px var(--c-bg-alt), 0 0 0 3px var(--c-heading);
+}
+
+.carouselButton {
+  display: grid;
+  place-items: center;
+  width: var(--kiva-touch-target);
+  height: var(--kiva-touch-target);
+  border: 1px solid var(--c-border);
+  border-radius: 50%;
+  background: var(--c-surface);
+  color: var(--c-heading);
+  cursor: pointer;
+  transition: background-color var(--kiva-motion-fast) var(--kiva-easing), border-color var(--kiva-motion-fast) var(--kiva-easing);
+}
+
+.carouselButton:hover:not(:disabled) {
+  border-color: var(--kiva-lime);
+  background: var(--kiva-lime);
+  color: var(--kiva-forest);
+}
+
+.carouselButton:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.featureCard {
+  display: flex;
+  flex-direction: column;
+  min-height: 560px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.featureHead {
+  display: grid;
+  align-content: start;
+  gap: var(--kiva-space-3);
+  min-height: 204px;
+  padding: var(--kiva-space-6) var(--kiva-space-6) var(--kiva-space-4);
+}
+
+/* Large illustration panel (always dark stage), like the reference cards. */
+.featureVisual {
+  flex: 1;
+  min-height: 360px;
+  margin: 0 var(--kiva-space-2) var(--kiva-space-2);
+}
+
+
+/* ============================================================== Markets */
+
+.marketGrid {
+  display: grid;
+  gap: var(--kiva-space-4);
+}
+
+@media (min-width: 600px) {
+  .marketGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .marketFeatured {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 1200px) {
+  .marketGrid {
+    grid-template-columns: 2fr repeat(3, 1fr);
+  }
+
+  .marketFeatured {
+    grid-column: auto;
+  }
+}
+
+.marketCard {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.marketFeatured {
+  gap: var(--kiva-space-6);
+  padding: var(--kiva-space-6);
+}
+
+.featuredTop {
+  display: flex;
+  align-items: center;
+  gap: var(--kiva-space-6);
+}
+
+.featuredInfo {
+  display: grid;
+  gap: var(--kiva-space-1);
+}
+
+.featuredKicker {
+  font-size: var(--kiva-fs-caption);
+  color: var(--c-text-muted);
+}
+
+.featuredName {
+  font-size: var(--kiva-fs-title);
+  font-weight: 700;
+  color: var(--c-heading);
+}
+
+.featuredPrice {
+  font-size: var(--kiva-fs-section);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--c-heading);
+}
+
+.featuredChart {
+  height: 120px;
+  margin-top: auto;
+}
+
+.featuredFoot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--kiva-space-3);
+  font-size: var(--kiva-fs-caption);
+  color: var(--c-text-muted);
+}
+
+
+.marketVisual {
+  display: grid;
+  place-items: center;
+  height: 168px;
+  border-bottom: 1px solid var(--c-border);
+  background-color: var(--c-surface-2);
+  background-image:
+    linear-gradient(var(--c-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--c-grid-line) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.marketBody {
+  display: grid;
+  gap: var(--kiva-space-2);
+  padding: var(--kiva-space-4);
+}
+
+.marketPriceRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--kiva-space-2);
+}
+
+.marketPrice {
+  font-size: var(--kiva-fs-section);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--c-heading);
+}
+
+.marketName {
+  font-size: var(--kiva-fs-caption);
+  font-weight: 500;
+  color: var(--c-text-muted);
+}
+
+.marketStats {
+  display: grid;
+  gap: var(--kiva-space-1);
+  margin: var(--kiva-space-2) 0 0;
+  font-size: var(--kiva-fs-caption);
+}
+
+.marketStats div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--kiva-space-2);
+}
+
+.marketStats dt {
+  color: var(--c-text-muted);
+}
+
+.marketStats dd {
+  margin: 0;
+  font-weight: 600;
+  text-align: right;
+  color: var(--c-heading);
+}
+
+/* ================================================================ Steps */
+
+.stepsShell {
+  padding: var(--kiva-space-4);
+  border: 1px solid var(--c-border);
+  border-radius: 28px;
+  background: var(--c-surface);
+}
+
+@media (min-width: 900px) {
+  .stepsShell {
+    padding: var(--kiva-space-6);
+  }
+}
+
+.stepsHead {
+  position: sticky;
+  top: var(--kiva-header-height);
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--kiva-space-4);
+  padding: var(--kiva-space-4) var(--kiva-space-2) var(--kiva-space-6);
+  background: var(--c-surface);
+}
+
+.stepsTitle {
+  font-size: var(--kiva-fs-title);
+  font-weight: 700;
+  color: var(--c-heading);
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stepItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Connector: a track, plus a Lime fill scaled by --fill (0 → 1) as you scroll. */
+.stepItemLinked {
+  padding-left: 56px;
+}
+
+.stepItemLinked::before,
+.stepItemLinked::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 6px;
+  width: 44px;
+  height: 3px;
+  margin-top: -1.5px;
+  border-radius: 2px;
+}
+
+.stepItemLinked::before {
+  background: var(--c-border);
+}
+
+.stepItemLinked::after {
+  background: var(--kiva-lime);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--kiva-lime) 60%, transparent);
+  transform: scaleX(var(--fill, 0));
+  transform-origin: left center;
+  transition: transform 120ms linear;
+}
+
+.stepDot {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--c-border);
+  border-radius: 50%;
+  background: var(--c-surface);
+  font-weight: 700;
+  color: var(--c-text-muted);
+  transition:
+    background-color var(--kiva-motion-slow) var(--kiva-ease-out),
+    border-color var(--kiva-motion-slow) var(--kiva-ease-out),
+    color var(--kiva-motion-slow) var(--kiva-ease-out),
+    transform var(--kiva-motion-slow) var(--kiva-ease-out),
+    box-shadow var(--kiva-motion-slow) var(--kiva-ease-out);
+}
+
+.step_done {
+  border-color: var(--kiva-lime);
+  background: color-mix(in srgb, var(--kiva-lime) 18%, var(--c-surface));
+  color: var(--c-accent-icon);
+}
+
+.step_active {
+  border-color: var(--kiva-lime);
+  background: var(--kiva-lime);
+  color: var(--kiva-forest);
+  transform: scale(1.15);
+  box-shadow: 0 0 24px -4px color-mix(in srgb, var(--kiva-lime) 75%, transparent);
+}
+
+/* Pulse ring around the current step. */
+.step_active::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 50%;
+  border: 2px solid var(--kiva-lime);
+  animation: step-pulse 1.8s var(--kiva-ease-out) infinite;
+}
+
+@keyframes step-pulse {
+  from {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.6);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .step_active::after {
+    animation: none;
+    opacity: 0;
+  }
+
+  .stepItemLinked::after {
+    transition: none;
+  }
+}
+
+@media (max-width: 599px) {
+  .stepItemLinked {
+    padding-left: 36px;
+  }
+
+  .stepItemLinked::before,
+  .stepItemLinked::after {
+    width: 26px;
+    left: 5px;
+  }
+
+  .stepDot {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+.stepsList {
+  display: grid;
+  gap: var(--kiva-space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Sticky stacking: each panel pins slightly lower than the previous one.
+   Panels are ".light-surface": they look the same in both themes. */
+.stepPanel {
+  position: sticky;
+  top: calc(var(--kiva-header-height) + 104px + var(--i) * 16px);
+  display: grid;
+  gap: var(--kiva-space-6);
+  align-items: center;
+  min-height: 380px;
+  padding: var(--kiva-space-6);
+  border-radius: var(--kiva-radius-card-lg);
+  color: var(--c-text);
+  box-shadow: 0 -16px 40px -24px rgb(0 0 0 / 0.45);
+}
+
+@media (min-width: 900px) {
+  .stepPanel {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--kiva-space-12);
+    padding: var(--kiva-space-10);
+  }
+}
+
+.stepPanel[data-variant="0"] {
+  background: var(--kiva-lime);
+}
+
+.stepPanel[data-variant="1"] {
+  background: var(--kiva-off-white);
+}
+
+.stepPanel[data-variant="2"] {
+  background: var(--kiva-soft-gray);
+}
+
+.stepVisual {
+  display: grid;
+  place-items: center;
+}
+
+.stepMock {
+  display: grid;
+  gap: var(--kiva-space-2);
+  width: min(100%, 360px);
+  padding: var(--kiva-space-4);
+  border: 1px solid var(--c-border);
+  border-radius: var(--kiva-radius-card);
+  background: var(--kiva-white);
+  box-shadow: 0 24px 48px -28px rgb(16 28 23 / 0.45);
+  font-size: var(--kiva-fs-body-sm);
+  transform: rotate(-2deg);
+}
+
+.stepPanel[data-variant="1"] .stepMock {
+  transform: rotate(2deg);
+}
+
+.stepSearch {
+  display: flex;
+  align-items: center;
+  gap: var(--kiva-space-2);
+  padding: 10px 12px;
+  border: 1px solid var(--c-border);
+  border-radius: var(--kiva-radius-button);
+  color: var(--c-text-muted);
+}
+
+.stepRow {
+  display: flex;
+  align-items: center;
+  gap: var(--kiva-space-3);
+  padding: 6px 4px;
+  font-weight: 600;
+  color: var(--c-heading);
+}
+
+.stepRow small {
+  margin-left: auto;
+  font-weight: 400;
+  color: var(--c-text-muted);
+}
+
+
+.stepChart {
+  height: 90px;
+}
+
+.stepNote {
+  font-size: var(--kiva-fs-caption);
+  color: var(--c-text-muted);
+}
+
+.stepCheck {
+  display: flex;
+  align-items: center;
+  gap: var(--kiva-space-3);
+  padding: 10px 12px;
+  border-radius: var(--kiva-radius-button);
+  background: var(--kiva-off-white);
+  font-weight: 500;
+}
+
+.stepCheck svg {
+  width: 20px;
+  height: 20px;
+  padding: 3px;
+  border-radius: 50%;
+  background: var(--kiva-soft-gray);
+  color: var(--c-text-muted);
+  box-sizing: border-box;
+}
+
+.stepCheck[data-done] svg {
+  background: var(--kiva-forest);
+  color: var(--kiva-lime);
+}
+
+.stepCopy {
+  display: grid;
+  justify-items: start;
+  gap: var(--kiva-space-4);
+}
+
+.stepKicker {
+  font-size: var(--kiva-fs-caption);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--kiva-forest);
+}
+
+.stepText {
+  max-width: 34ch;
+  font-size: var(--kiva-fs-section);
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--kiva-forest);
+}
+
+@media (min-width: 900px) {
+  .stepText {
+    font-size: 22px;
+  }
+}
+
+/* ================================================================== App */
+
+/* Dark showcase panel (".dark-surface" in both themes); phones rise from the bottom edge. */
+.appPanel {
+  position: relative;
+  display: grid;
+  gap: var(--kiva-space-8);
+  overflow: hidden;
+  isolation: isolate;
+  padding: var(--kiva-space-10) var(--kiva-space-6) 0;
+  border: 1px solid var(--c-border);
+  border-radius: 32px;
+  background: color-mix(in srgb, var(--kiva-forest) 80%, #000);
+  color: var(--c-text);
+}
+
+@media (min-width: 900px) {
+  .appPanel {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    align-items: center;
+    gap: var(--kiva-space-8);
+    min-height: 560px;
+    padding: 0 0 0 var(--kiva-space-12);
+  }
+}
+
+.appPanelGrid {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.appPanelGlow {
+  position: absolute;
+  right: -10%;
+  bottom: -30%;
+  z-index: -1;
+  width: 70%;
+  height: 110%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--kiva-lime) 30%, transparent), transparent);
+}
+
+.appCopy {
+  display: grid;
+  justify-items: start;
+  gap: var(--kiva-space-4);
+  padding-block: var(--kiva-space-6);
+}
+
+.appBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--kiva-space-2);
+  padding: 6px 14px 6px 10px;
+  border: 1px solid var(--c-border);
+  border-radius: var(--kiva-radius-pill);
+  background: var(--c-surface);
+  font-size: var(--kiva-fs-caption);
+  font-weight: 600;
+  color: var(--c-heading);
+}
+
+.appTitle {
+  font-size: var(--kiva-fs-marketing);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+  color: var(--c-heading);
+}
+
+.appText {
+  max-width: 44ch;
+  font-size: var(--kiva-fs-body);
+  line-height: 1.6;
+  color: var(--c-text-muted);
+}
+
+.appActions {
+  margin-top: var(--kiva-space-2);
+}
+
+/* Phone stage */
+.appStage {
+  position: relative;
+  height: 460px;
+}
+
+@media (min-width: 900px) {
+  .appStage {
+    align-self: end;
+    height: 540px;
+  }
+}
+
+/* Scoped to beat the mockup's own `position: relative` regardless of stylesheet order. */
+.appStage .appPhoneBack,
+.appStage .appPhoneFront {
+  position: absolute;
+  bottom: -150px;
+}
+
+.appStage .appPhoneBack {
+  left: 2%;
+  z-index: 1;
+  transform: rotate(-8deg) scale(0.86);
+  transform-origin: bottom center;
+  opacity: 0.9;
+  --device-glow: 0 0 80px -30px color-mix(in srgb, var(--kiva-lime) 40%, transparent);
+}
+
+.appStage .appPhoneFront {
+  right: 13%;
+  z-index: 2;
+  transform: rotate(5deg);
+  transform-origin: bottom center;
+  --device-glow: 0 0 120px -20px color-mix(in srgb, var(--kiva-lime) 55%, transparent);
+}
+
+@media (min-width: 900px) and (max-width: 1199px) {
+  .appStage .appPhoneBack {
+    left: -6%;
+  }
+
+  .appStage .appPhoneFront {
+    right: -2%;
+  }
+}
+
+@media (max-width: 599px) {
+  .appStage {
+    height: 380px;
+  }
+
+  .appStage .appPhoneBack {
+    left: -12%;
+    transform: rotate(-8deg) scale(0.68);
+  }
+
+  .appStage .appPhoneFront {
+    right: -8%;
+    bottom: -220px;
+    transform: rotate(5deg) scale(0.8);
+  }
+}
+
+.appChip {
+  position: absolute;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--kiva-space-2);
+  padding: 10px 14px;
+  border: 1px solid var(--c-border);
+  border-radius: var(--kiva-radius-pill);
+  background: color-mix(in srgb, var(--kiva-forest) 70%, transparent);
+  color: var(--c-heading);
+  font-size: var(--kiva-fs-caption);
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 18px 36px -18px rgb(0 0 0 / 0.7);
+  backdrop-filter: blur(12px);
+  animation: kiva-float 5s ease-in-out infinite alternate;
+}
+
+.appChip svg {
+  color: var(--kiva-lime);
+}
+
+.appChipA {
+  top: 14%;
+  left: 0;
+}
+
+.appChipB {
+  bottom: 22%;
+  left: 30%;
+  animation-delay: 1.5s;
+}
+
+.appChipDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--kiva-lime);
+  box-shadow: 0 0 10px var(--kiva-lime);
+}
+
+@media (max-width: 599px) {
+  .appChipA {
+    top: 4%;
+  }
+
+  .appChipB {
+    display: none;
+  }
+}
+
+/* Feature tiles under the panel */
+.appTiles {
+  display: grid;
+  gap: var(--kiva-space-4);
+  margin: var(--kiva-space-4) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 600px) {
+  .appTiles {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .appTiles {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.appTile {
+  display: grid;
+  align-content: start;
+  gap: var(--kiva-space-2);
+  padding: var(--kiva-space-6);
+  border: 1px solid var(--c-border);
+  border-radius: var(--kiva-radius-card-lg);
+  background: var(--c-surface);
+  transition:
+    transform var(--kiva-motion-slow) var(--kiva-ease-out),
+    border-color var(--kiva-motion-slow) var(--kiva-ease-out),
+    box-shadow var(--kiva-motion-slow) var(--kiva-ease-out);
+}
+
+@media (hover: hover) {
+  .appTile:hover {
+    border-color: var(--c-border-strong);
+    box-shadow: var(--kiva-shadow-hover);
+    transform: translateY(-4px);
+  }
+}
+
+.appTileIcon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: var(--kiva-space-2);
+  border-radius: var(--kiva-radius-button);
+  background: var(--kiva-lime);
+  color: var(--kiva-forest);
+  box-shadow: 0 8px 20px -10px color-mix(in srgb, var(--kiva-lime) 80%, transparent);
+}
+
+.appTileTitle {
+  font-size: var(--kiva-fs-section);
+  font-weight: 700;
+  color: var(--c-heading);
+}
+
+/* ================================================================ Learn */
+
+.learnGrid {
+  display: grid;
+  gap: var(--kiva-space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 600px) {
+  .learnGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .learnGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.learnGrid li {
+  display: flex;
+}
+
+.learnCard {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--kiva-space-3);
+  min-height: 280px;
+  padding: var(--kiva-space-6);
+  text-decoration: none;
+}
+
+.learnIndex {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--kiva-radius-button);
+  background: var(--kiva-forest);
+  color: var(--kiva-lime);
+  font-weight: 800;
+}
+
+.learnTitle {
+  font-size: var(--kiva-fs-section);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--c-heading);
+}
+
+.learnMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: var(--kiva-space-4);
+  border-top: 1px solid var(--c-border);
+  font-size: var(--kiva-fs-caption);
+  color: var(--c-text-muted);
+}
+
+.learnMeta svg {
+  color: var(--c-accent-icon);
+  transition: transform var(--kiva-motion-base) var(--kiva-ease-out);
+}
+
+.learnCard:hover .learnMeta svg {
+  transform: translate(3px, -3px);
+}
+
+/* ============================================================== Partner */
+
+.partnerSection {
+  padding-block: var(--kiva-section-y);
+  background: var(--c-bg);
+}
+
+/* Lime block (".light-surface"): identical in both themes. */
+.partnerCard {
+  display: grid;
+  gap: var(--kiva-space-8);
+  padding: var(--kiva-space-8) var(--kiva-space-6);
+  border-radius: 28px;
+  background: var(--kiva-lime);
+  color: var(--kiva-forest);
+}
+
+@media (min-width: 900px) {
+  .partnerCard {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    align-items: center;
+    gap: var(--kiva-space-12);
+    padding: var(--kiva-space-12);
+  }
+}
+
+.partnerCopy {
+  display: grid;
+  gap: var(--kiva-space-4);
+}
+
+.partnerEyebrow {
+  font-size: var(--kiva-fs-caption);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.partnerTitle {
+  font-size: var(--kiva-fs-marketing);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--kiva-forest);
+}
+
+.partnerText {
+  max-width: 56ch;
+  margin-bottom: var(--kiva-space-2);
+  line-height: 1.6;
+}
+
+.partnerPoints {
+  display: grid;
+  gap: var(--kiva-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.partnerPoints li {
+  display: flex;
+  align-items: center;
+  gap: var(--kiva-space-3);
+  padding: var(--kiva-space-4);
+  border-radius: var(--kiva-radius-card);
+  background: color-mix(in srgb, var(--kiva-forest) 8%, var(--kiva-lime));
+  font-weight: 600;
+}
+
+.partnerCheck {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--kiva-forest);
+  color: var(--kiva-lime);
+}
+
+/* ================================================================== FAQ */
+
+.faqGrid {
+  display: grid;
+  gap: var(--kiva-space-8);
+}
+
+@media (min-width: 900px) {
+  .faqGrid {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr);
+    gap: var(--kiva-space-12);
+    align-items: start;
+  }
+}
+
+.faqIntro {
+  display: grid;
+  justify-items: start;
+  gap: var(--kiva-space-4);
+}
+
+.faqList {
+  display: grid;
+  gap: var(--kiva-space-2);
+}
+
+.faqItem {
+  border: 1px solid var(--c-border);
+  border-radius: var(--kiva-radius-card);
+  background: var(--c-surface);
+  transition: border-color var(--kiva-motion-base) var(--kiva-easing);
+}
+
+.faqItem[open] {
+  border-color: var(--c-border-strong);
+}
+
+.faqItem summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--kiva-space-4);
+  min-height: 60px;
+  padding: var(--kiva-space-3) var(--kiva-space-6);
+  font-weight: 600;
+  color: var(--c-heading);
+  list-style: none;
+  cursor: pointer;
+}
+
+.faqItem summary::-webkit-details-marker {
+  display: none;
+}
+
+.faqItem summary svg {
+  flex-shrink: 0;
+  color: var(--c-accent-icon);
+  transition: transform var(--kiva-motion-base) var(--kiva-ease-out);
+}
+
+.faqItem[open] summary svg {
+  transform: rotate(45deg);
+}
+
+.faqItem p {
+  padding: 0 var(--kiva-space-6) var(--kiva-space-6);
+  line-height: 1.7;
+  color: var(--c-text-muted);
+}
+
+/* ============================================================== Mobile */
+
+@media (max-width: 599px) {
+  .marketVisual {
+    height: 120px;
+  }
+
+
+  .stepPanel {
+    min-height: 0;
+  }
+}

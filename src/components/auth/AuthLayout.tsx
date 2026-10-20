@@ -13,9 +13,11 @@ interface AuthLayoutProps {
 }
 
 export function AuthLayout({ dict, title, subtitle, children }: AuthLayoutProps) {
+  // Module classes only: mixing global utilities (section/container) with overrides of the
+  // same properties made the result depend on CSS load order (dev vs production).
   return (
-    <section className={`section ${styles.section}`}>
-      <div className={`container ${styles.grid}`}>
+    <section className={styles.section}>
+      <div className={styles.grid}>
         <Card padding="lg" className={styles.card}>
           <div className={styles.header}>
             <h1 className={styles.title}>{title}</h1>

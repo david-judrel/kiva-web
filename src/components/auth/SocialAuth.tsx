@@ -68,9 +68,6 @@ export function SocialAuth({ t }: { t: Dictionary["auth"]["social"] }) {
           </Alert>
         )}
       </div>
-      <p className={styles.divider}>
-        <span>{t.divider}</span>
-      </p>
     </div>
   );
 }

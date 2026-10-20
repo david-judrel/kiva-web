@@ -47,7 +47,7 @@ function StatusMessage({
 interface LoginFormProps {
   forms: Forms;
   t: Auth["login"];
-  links: { forgot: string; register: string };
+  links: { forgot: string };
 }
 
 export function LoginForm({ forms, t, links }: LoginFormProps) {
@@ -95,12 +95,6 @@ export function LoginForm({ forms, t, links }: LoginFormProps) {
       <div ref={statusRef}>
         <StatusMessage status={status} forms={forms} unavailableTitle={t.unavailableTitle} unavailableText={t.unavailableText} />
       </div>
-      <p className={styles.switch}>
-        {t.noAccount}{" "}
-        <Link href={links.register} className={styles.link}>
-          {t.signupLink}
-        </Link>
-      </p>
     </form>
   );
 }
@@ -108,7 +102,7 @@ export function LoginForm({ forms, t, links }: LoginFormProps) {
 interface RegisterFormProps {
   forms: Forms;
   t: Auth["register"];
-  links: { login: string; terms: string; privacy: string; earlyAccess: string };
+  links: { terms: string; privacy: string; earlyAccess: string };
 }
 
 export function RegisterForm({ forms, t, links }: RegisterFormProps) {
@@ -192,12 +186,6 @@ export function RegisterForm({ forms, t, links }: RegisterFormProps) {
           }
         />
       </div>
-      <p className={styles.switch}>
-        {t.hasAccount}{" "}
-        <Link href={links.login} className={styles.link}>
-          {t.loginLink}
-        </Link>
-      </p>
     </form>
   );
 }

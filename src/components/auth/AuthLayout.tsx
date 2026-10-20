@@ -1,9 +1,8 @@
-import { ShieldCheck } from "lucide-react";
 import type { ReactNode } from "react";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { Alert } from "@/components/ui/Alert";
 import { Card } from "@/components/ui/Card";
-import { IconTile } from "@/components/ui/IconTile";
+import { FeatureArt } from "@/components/illustrations/FeatureArt";
 import styles from "./Auth.module.css";
 
 interface AuthLayoutProps {
@@ -25,15 +24,19 @@ export function AuthLayout({ dict, title, subtitle, children }: AuthLayoutProps)
           <Alert variant="warning">{dict.auth.unavailableBanner}</Alert>
           {children}
         </Card>
-        <Card variant="highlight" padding="lg" className={styles.aside}>
-          <IconTile icon={ShieldCheck} tone="dark" />
-          <h2 className={styles.asideTitle}>{dict.auth.aside.title}</h2>
-          <ul className={styles.asideList}>
-            {dict.auth.aside.items.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </Card>
+        <div className={styles.aside}>
+          <div className={styles.asideArt}>
+            <FeatureArt variant="shield" />
+          </div>
+          <Card variant="highlight" padding="lg" className={styles.asideCard}>
+            <h2 className={styles.asideTitle}>{dict.auth.aside.title}</h2>
+            <ul className={styles.asideList}>
+              {dict.auth.aside.items.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </Card>
+        </div>
       </div>
     </section>
   );

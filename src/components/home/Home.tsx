@@ -28,7 +28,7 @@ import { ChangeIndicator } from "@/components/ui/ChangeIndicator";
 import { AssetCoin } from "@/components/ui/AssetCoin";
 import { DemoBadge } from "@/components/ui/Badge";
 import { Sparkline } from "@/components/ui/Sparkline";
-import { FeatureArt, type FeatureArtVariant } from "./FeatureArt";
+import { FeatureArt, type FeatureArtVariant } from "@/components/illustrations/FeatureArt";
 import { Carousel, HeroSignup, StepIndicator } from "./HomeClient";
 import { PhoneMockup } from "./PhoneMockup";
 import styles from "./Home.module.css";

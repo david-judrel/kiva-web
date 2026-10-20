@@ -65,7 +65,18 @@
   color: var(--c-text-muted);
 }
 
+/* ------------------------------------------------------- Right column */
 .aside {
+  display: grid;
+  gap: var(--kiva-space-4);
+}
+
+/* Illustration panel: same dark stage as the home page feature cards. */
+.asideArt {
+  height: 240px;
+}
+
+.asideCard {
   display: grid;
   gap: var(--kiva-space-4);
 }
@@ -90,6 +101,37 @@
 }
 
 /* ------------------------------------------------------- Social sign-in */
+.flow {
+  display: grid;
+  gap: var(--kiva-space-4);
+}
+
+.providers {
+  display: grid;
+  gap: var(--kiva-space-4);
+}
+
+/* The hidden attribute must win over the display values above. */
+.providers[hidden],
+.emailCta[hidden],
+.emailPanel[hidden] {
+  display: none;
+}
+
+/*
+ * Without JavaScript the e-mail step cannot be opened, so the form is simply
+ * shown below the providers, and the button that opens it is not rendered.
+ */
+html:not(:global(.js)) .emailPanel[hidden] {
+  display: grid;
+}
+
+html:not(:global(.js)) .emailCta,
+html:not(:global(.js)) .divider,
+html:not(:global(.js)) .back {
+  display: none;
+}
+
 .social {
   display: grid;
   gap: var(--kiva-space-4);
@@ -176,4 +218,87 @@
   flex: 1;
   height: 1px;
   background: var(--c-border);
+}
+
+/* "Continue with email": opens the fields, same shape as a provider row. */
+.emailCta {
+  display: flex;
+  align-items: center;
+  gap: var(--kiva-space-3);
+  width: 100%;
+  min-height: var(--kiva-button-height);
+  padding: 0 var(--kiva-space-4);
+  border: 1px solid var(--c-border);
+  border-radius: var(--kiva-radius-button);
+  background: var(--c-surface);
+  color: var(--c-heading);
+  font-size: var(--kiva-fs-body);
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    border-color var(--kiva-motion-fast) var(--kiva-easing),
+    background-color var(--kiva-motion-fast) var(--kiva-easing),
+    transform var(--kiva-motion-fast) var(--kiva-easing);
+}
+
+.emailCta:hover {
+  border-color: var(--c-border-strong);
+  background: var(--c-surface-2);
+}
+
+.emailCta:active {
+  transform: scale(0.99);
+}
+
+.emailCta svg {
+  flex-shrink: 0;
+}
+
+.emailCtaArrow {
+  margin-left: auto;
+  color: var(--c-text-muted);
+}
+
+/* ------------------------------------------------------- E-mail panel */
+.emailPanel {
+  display: grid;
+  gap: var(--kiva-space-4);
+  animation: auth-reveal var(--kiva-motion-base) var(--kiva-easing) both;
+}
+
+@keyframes auth-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--kiva-space-2);
+  justify-self: start;
+  min-height: var(--kiva-touch-target);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--c-heading);
+  font-size: var(--kiva-fs-body-sm);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.back:hover {
+  color: var(--c-text-muted);
+}
+
+.emailNote {
+  font-size: var(--kiva-fs-body-sm);
+  color: var(--c-text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .emailPanel {
+    animation: none;
+  }
 }
